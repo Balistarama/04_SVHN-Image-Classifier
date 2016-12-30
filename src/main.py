@@ -4,14 +4,7 @@ import tensorflow as tf
 import time # For time stats
 from six.moves import cPickle as pickle
 from six.moves import range
-
-TRAINING_ITERATIONS = 20000
-BATCH_SIZE = 50
-ACCURACY_TESTING_INTERVAL = 1000
-
-IMAGE_SIZE = 28
-NUM_LABELS = 10
-TRAIN_SUBSET = 10000
+from config import *
 
 def weight_variable(shape):
   """ Initialize the weights with a small amount of noise for symmetry breaking """
@@ -39,14 +32,14 @@ def max_pool_2x2(x):
   return tf.nn.max_pool(value=x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
 
-print('\n************* Importing Data **************')
+print('\nImporting Data...')
 
 try:
-  f = open('notMNIST.pickle', 'rb')
+  f = open(DATASET, 'rb')
   saved_pickle = pickle.load(f)
   f.close()
 except Exception as e:
-  print('Unable to laod data from notMNIST.pickle:', e)
+  print('Unable to laod data from ', DATASET, ':', e)
   raise
 
 train_dataset = saved_pickle['train_dataset']
@@ -57,12 +50,12 @@ test_dataset = saved_pickle['test_dataset']
 test_labels = saved_pickle['test_labels']
 del saved_pickle  # Frees up memory
 
+print('Data Imported')
 print('Training set', train_dataset.shape, train_labels.shape)
 print('Validation set', valid_dataset.shape, valid_labels.shape)
 print('Test set', test_dataset.shape, test_labels.shape)
-print('************* Data IBATCH_SIZEmported **************\n')
 
-print('\n************* Reshaping Data **************\n')
+print('\nReshaping Data...')
 def reformat(dataset, labels):
   dataset = dataset.reshape((-1, IMAGE_SIZE * IMAGE_SIZE)).astype(np.float32)
   # Map 0 to [1.0, 0.0, 0.0 ...], 1 to [0.0, 1.0, 0.0 ...]
@@ -73,12 +66,11 @@ train_dataset, train_labels = reformat(train_dataset, train_labels)
 valid_dataset, valid_labels = reformat(valid_dataset, valid_labels)
 test_dataset, test_labels = reformat(test_dataset, test_labels)
 
-print('\n************* After Reshaping Data **************\n')
+print('Data Reshaped')
 print('Training set', train_dataset.shape, train_labels.shape)
 print('Validation set', valid_dataset.shape, valid_labels.shape)
 print('Test set', test_dataset.shape, test_labels.shape)
 print('\n')
-
 
 """ START SESSION """
 sess = tf.InteractiveSession()
@@ -129,9 +121,9 @@ correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 # Initialise all the variables
-print('\nTRAINING_ITERATIONS: ' + str(TRAINING_ITERATIONS))
-print('BATCH_SIZE: ' + str(BATCH_SIZE))
 sess.run(tf.initialize_all_variables())
+
+print_configuration()
 
 print("Beginning training...\n")
 # Start the timer Krunk!
@@ -140,7 +132,7 @@ start_time = time.time()
 for i in range(TRAINING_ITERATIONS):
   start_index = (i * BATCH_SIZE) % train_dataset.shape[0]
   finish_index = start_index + BATCH_SIZE
-  train_batch = [train_dataset[start_index:finish_2index, :], train_labels[start_index:finish_index, :]]
+  train_batch = [train_dataset[start_index:finish_index, :], train_labels[start_index:finish_index, :]]
  
   if i % ACCURACY_TESTING_INTERVAL == 0:
     start_index = (i * BATCH_SIZE) % valid_dataset.shape[0]
