@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/Google%20Street%20View.png"><br><br>
+  <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/Google%20Street%20View.png"><br>
 </div>
 
 04_SVHN Image Classifier
@@ -19,8 +19,8 @@ INSTRUCTIONS:
  - Clone repository
  - Follow the data/README to download and munge the raw dataset
  - Run the src/main.py Neural Network
- 
- REFERENCES:
- --------------------------------------------------------------------------------
- You're welcome to use any and all code but a reference back to 
- https://github.com/Balistarama would be appreciated
+
+REFERENCES:
+--------------------------------------------------------------------------------
+You're welcome to use any and all code but a reference back to 
+https://github.com/Balistarama would be appreciated
