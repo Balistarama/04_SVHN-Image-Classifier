@@ -5,13 +5,15 @@ import time # For time stats
 from six.moves import cPickle as pickle
 from six.moves import range
 
-TRAINING_ITERATIONS = 20000
+import config.py
+"""TRAINING_ITERATIONS = 20000
 BATCH_SIZE = 50
 ACCURACY_TESTING_INTERVAL = 1000
 
 IMAGE_SIZE = 28
 NUM_LABELS = 10
 TRAIN_SUBSET = 10000
+"""
 
 def weight_variable(shape):
   """ Initialize the weights with a small amount of noise for symmetry breaking """
