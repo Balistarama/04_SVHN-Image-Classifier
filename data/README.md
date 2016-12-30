@@ -23,8 +23,8 @@ DIRECT LINKS:
 
 AFTER PROCESSING:
 --------------------------------------------------------------------------------
-Data was unzipped into separate directories inside "data/raw"
-
+- Data was unzipped into separate directories inside "data/raw"
+- "data_processor.py" was then run to munge data into SVHN.pickle
 
 REFERENCES:
 --------------------------------------------------------------------------------
