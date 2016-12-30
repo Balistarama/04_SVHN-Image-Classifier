@@ -17,13 +17,13 @@ Format 1: Full Numbers: train.tar.gz, test.tar.gz , extra.tar.gz (Note: for non-
 
 DIRECT LINKS:
 --------------------------------------------------------------------------------
-http://ufldl.stanford.edu/housenumbers/train.tar.gz
-http://ufldl.stanford.edu/housenumbers/test.tar.gz
-http://ufldl.stanford.edu/housenumbers/extra.tar.gz
+- http://ufldl.stanford.edu/housenumbers/train.tar.gz
+- http://ufldl.stanford.edu/housenumbers/test.tar.gz
+- http://ufldl.stanford.edu/housenumbers/extra.tar.gz
 
 AFTER PROCESSING:
 --------------------------------------------------------------------------------
-Data was unzipped into separate directories
+Data was unzipped into separate directories inside "data/raw"
 
 
 REFERENCES:
