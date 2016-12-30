@@ -44,8 +44,8 @@ except Exception as e:
 
 train_dataset = saved_pickle['train_dataset']
 train_labels = saved_pickle['train_labels']
-valid_dataset = saved_pickle['valid_dataset']
-valid_labels = saved_pickle['valid_labels']
+valid_dataset = saved_pickle['test_dataset']		# Temporarily use test dataset as validation dataset
+valid_labels = saved_pickle['test_labels']
 test_dataset = saved_pickle['test_dataset']
 test_labels = saved_pickle['test_labels']
 del saved_pickle  # Frees up memory
@@ -80,24 +80,24 @@ x = tf.placeholder(tf.float32, shape=[None, IMAGE_SIZE * IMAGE_SIZE])
 y_ = tf.placeholder(tf.float32, shape=[None, NUM_LABELS])
 
 """ INPUT """
-x_image = tf.reshape(x, [-1, IMAGE_SIZE, IMAGE_SIZE, 1])	# Size = 1@28x28
+x_image = tf.reshape(x, [-1, IMAGE_SIZE, IMAGE_SIZE, NUM_CHANNELS])	# Size = 3@32x32
 
 """ LAYER 1 """
-W_conv1 = weight_variable([5, 5, 1, 32])			# 5x5 Convolution
+W_conv1 = weight_variable([5, 5, 3, 32])			# 5x5 Convolution
 b_conv1 = bias_variable([32])
-h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)	# Output Size = 32@28x28
-h_pool1 = max_pool_2x2(h_conv1)					# Output Size = 32@14x14
+h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)	# Output Size = 32@32x32
+h_pool1 = max_pool_2x2(h_conv1)					# Output Size = 32@16x16
 
 """ LAYER 2 """
 W_conv2 = weight_variable([5, 5, 32, 64])			# 5x5 Convolution
 b_conv2 = bias_variable([64])
-h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)	# Output Size = 64@14x14
-h_pool2 = max_pool_2x2(h_conv2)					# Output Size = 64@7x7
+h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)	# Output Size = 64@16x16
+h_pool2 = max_pool_2x2(h_conv2)					# Output Size = 64@8x8
 
 """ FULLY CONNECTED LAYER """
-W_fc1 = weight_variable([7 * 7 * 64, 256])			# Must match 64@7x7 Size
+W_fc1 = weight_variable([8 * 8 * 64, 256])			# Must match 64@8x8 Size
 b_fc1 = bias_variable([256])					# FC Neural Net = 256 Neurons
-h_pool2_flat = tf.reshape(h_pool2, [-1, 7 * 7 * 64])		# Must match 64@7x7 Size
+h_pool2_flat = tf.reshape(h_pool2, [-1, 8 * 8 * 64])		# Must match 64@8x8 Size
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
 
 """ DROPOUT LAYER """
@@ -155,6 +155,7 @@ for i in range(int(test_dataset.shape[0]/BATCH_SIZE)):
 
 print('\n*************************************************')
 print('Final Model Accuracy: {:.2f}% (Runtime: {:.2f} Seconds)\n'.format(100*(sum(final_accuracy) / float(len(final_accuracy))), (time.time() - start_time)) )
+
 
 
 
