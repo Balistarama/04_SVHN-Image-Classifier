@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://avatars1.githubusercontent.com/u/24806458?v=3&u=4c3225f25cfb4f74d1c6d9d081457b8f5b19d651&s=400"><br><br>
+  <img src="https://static1.squarespace.com/static/5254f686e4b05048ea3d0711/526ddc80e4b00a92c907d2fb/526ddc94e4b09b70853f0a89/1383472101219/christopher_bettig-x-google_street_view-02.png?format=800w"><br><br>
 </div>
 
 04_SVHN Image Classifier
