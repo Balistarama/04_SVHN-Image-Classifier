@@ -31,8 +31,8 @@ def max_pool_2x2(x):
   """ strides: The stride of the sliding window for each dimension of the input tensor. """
   return tf.nn.max_pool(value=x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
-
-print('\nImporting Data...')
+# Import the dataset from the main pickle file
+print('\nImporting Data from "' + DATASET + '"')
 
 try:
   f = open(DATASET, 'rb')
@@ -44,34 +44,19 @@ except Exception as e:
 
 train_dataset = saved_pickle['train_dataset']
 train_labels = saved_pickle['train_labels']
-valid_dataset = saved_pickle['test_dataset']		# Temporarily use test dataset as validation dataset
-valid_labels = saved_pickle['test_labels']
+valid_dataset = saved_pickle['valid_dataset']
+valid_labels = saved_pickle['valid_labels']
 test_dataset = saved_pickle['test_dataset']
 test_labels = saved_pickle['test_labels']
 del saved_pickle  # Frees up memory
 
-print('Data Imported')
-print('Training set', train_dataset.shape, train_labels.shape)
-print('Validation set', valid_dataset.shape, valid_labels.shape)
-print('Test set', test_dataset.shape, test_labels.shape)
-
-print('\nReshaping Data...')
-def reformat(dataset, labels):
-  dataset = dataset.reshape((-1, IMAGE_SIZE * IMAGE_SIZE)).astype(np.float32)
-  # Map 0 to [1.0, 0.0, 0.0 ...], 1 to [0.0, 1.0, 0.0 ...]
-  labels = (np.arange(NUM_LABELS) == labels[:,None]).astype(np.float32)
-  return dataset, labels
-  
-train_dataset, train_labels = reformat(train_dataset, train_labels)
-valid_dataset, valid_labels = reformat(valid_dataset, valid_labels)
-test_dataset, test_labels = reformat(test_dataset, test_labels)
-
-print('Data Reshaped')
-print('Training set', train_dataset.shape, train_labels.shape)
-print('Validation set', valid_dataset.shape, valid_labels.shape)
-print('Test set', test_dataset.shape, test_labels.shape)
+print('Data Imported!')
+print('Training Set: ', train_dataset.shape, train_labels.shape)
+print('Validation Set: ', valid_dataset.shape, valid_labels.shape)
+print('Testing Set:', test_dataset.shape, test_labels.shape)
 print('\n')
 
+## Here we define the entire model of the Neural Network for Tensorflow
 """ START SESSION """
 sess = tf.InteractiveSession()
 
