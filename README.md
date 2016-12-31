@@ -17,7 +17,8 @@ Build an application that can interpret numbers from real-world images.
 images/labels and then pickle them into a single data file that the main.py 
 code can use <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/tick.png">
 - Update data_processor.py to split out a few thousand examples for the validation dataset <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/tick.png">
-- Configure main.py to properly import the pickled file and have the datasets setup in the correct format
+- Configure main.py to properly import the pickled file
+- Update data_processor.py to reshape the data so it's the right formate for the Neural Net
 - Configure the Convolutional Neural Net with the right layers, dropout and values etc
 - Setup a function that automatically parses the next "batch" of test data and labels
 
