@@ -4,13 +4,17 @@
 
 ##04_SVHN Image Classifier
 Using the Street View House Numbers (SVHN) Dataset, this project is a state of
-the art Deep Convolutional Neural Network image classifier.
+the art Deep Convolutional Neural Network image to number classifier.
 
-This project is the final task in the Udacity Deep Learning by Google free course
+This project is the final task in the Udacity Deep Learning course by Google 
 that can be found here: https://www.udacity.com/course/deep-learning--ud730
 
 ##OBJECTIVE:
-Build an application that can interpret number strings in real-world images.
+Build an application that can interpret numbers from real-world images.
+
+##TODO:
+- Setup a function that automatically parses the next "batch" of test data and labels <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/tick.png">
+- Commplete the data_processor.py file and functions
 
 ##INSTRUCTIONS:
  - Clone repository
