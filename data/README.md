@@ -13,17 +13,16 @@ scene images). SVHN is obtained from house numbers in Google Street View images.
 10 classes, 1 for each digit. Digit '1' has label 1, '9' has label 9 and '0' has label 10.
 73257 digits for training, 26032 digits for testing, and 531131 additional, somewhat 
 less difficult samples, to use as extra training data
-Format 1: Full Numbers: train.tar.gz, test.tar.gz , extra.tar.gz (Note: for non-commercial use only)
+Format 2: Cropped Digits: train_32x32.mat, test_32x32.mat , extra_32x32.mat (Note: for non-commercial use only)
 
 DIRECT LINKS:
 --------------------------------------------------------------------------------
-- http://ufldl.stanford.edu/housenumbers/train.tar.gz
-- http://ufldl.stanford.edu/housenumbers/test.tar.gz
-- http://ufldl.stanford.edu/housenumbers/extra.tar.gz
+- http://ufldl.stanford.edu/housenumbers/train_32x32.mat
+- http://ufldl.stanford.edu/housenumbers/test_32x32.mat
+- hhttp://ufldl.stanford.edu/housenumbers/extra_32x32.mat
 
 AFTER PROCESSING:
 --------------------------------------------------------------------------------
-- Data was unzipped into separate directories inside "data/raw"
 - "data_processor.py" was then run to munge data into SVHN.pickle
 
 REFERENCES:
