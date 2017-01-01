@@ -56,57 +56,91 @@ print('Validation Set: ', valid_dataset.shape, valid_labels.shape)
 print('Testing Set:', test_dataset.shape, test_labels.shape)
 print('\n')
 
-## Here we define the entire model of the Neural Network for Tensorflow
+# Define the entire model of the Neural Network for Tensorflow
 """ START SESSION """
 sess = tf.InteractiveSession()
 
 """ DEFINE VARIABLES WITH PLACEHOLDERS """
-x = tf.placeholder(tf.float32, shape=[None, IMAGE_SIZE * IMAGE_SIZE])
-y_ = tf.placeholder(tf.float32, shape=[None, NUM_LABELS])
+with tf.name_scope('Input_Images'):
+    x = tf.placeholder(tf.float32, shape=[None, IMAGE_SIZE, IMAGE_SIZE, NUM_CHANNELS], name="x-input")
 
-""" INPUT """
-x_image = tf.reshape(x, [-1, IMAGE_SIZE, IMAGE_SIZE, NUM_CHANNELS])	# Size = 3@32x32
+with tf.name_scope('Input_Labels'):
+    y_ = tf.placeholder(tf.float32, shape=[None, NUM_LABELS], name="y-input")
 
 """ LAYER 1 """
-W_conv1 = weight_variable([5, 5, 3, 32])			# 5x5 Convolution
-b_conv1 = bias_variable([32])
-h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)	# Output Size = 32@32x32
-h_pool1 = max_pool_2x2(h_conv1)					# Output Size = 32@16x16
+with tf.name_scope('Layer_1_Weights'):
+    W_conv1 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, NUM_CHANNELS, 28])
+
+with tf.name_scope('Layer_1_Biases'):    
+    b_conv1 = bias_variable([28])
+
+h_conv1 = tf.nn.relu(conv2d(x, W_conv1) + b_conv1)							# Output Size = 32@32x32
+h_pool1 = max_pool_2x2(h_conv1)										# Output Size = 32@16x16
 
 """ LAYER 2 """
-W_conv2 = weight_variable([5, 5, 32, 64])			# 5x5 Convolution
-b_conv2 = bias_variable([64])
-h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)	# Output Size = 64@16x16
-h_pool2 = max_pool_2x2(h_conv2)					# Output Size = 64@8x8
+with tf.name_scope('Layer_2_Weights'):
+    W_conv2 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, 28, 56])
+
+with tf.name_scope('Layer_2_Biases'):
+    b_conv2 = bias_variable([56])
+    
+h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)						# Output Size = 64@16x16
+h_pool2 = max_pool_2x2(h_conv2)										# Output Size = 64@8x8
 
 """ FULLY CONNECTED LAYER """
-W_fc1 = weight_variable([8 * 8 * 64, 256])			# Must match 64@8x8 Size
-b_fc1 = bias_variable([256])					# FC Neural Net = 256 Neurons
-h_pool2_flat = tf.reshape(h_pool2, [-1, 8 * 8 * 64])		# Must match 64@8x8 Size
+with tf.name_scope('FCL_1_Weights'):
+    W_fc1 = weight_variable([8 * 8 * 56, NUM_NEURONS])	
+
+with tf.name_scope('FCL_1_Biases'):						# Must match 64@8x8 Size
+    b_fc1 = bias_variable([NUM_NEURONS])
+
+h_pool2_flat = tf.reshape(h_pool2, [-1, 8 * 8 * 56])
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
 
 """ DROPOUT LAYER """
-keep_prob = tf.placeholder(tf.float32)
-h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
+with tf.name_scope('Dropout'):
+    keep_prob = tf.placeholder(tf.float32)
+    tf.summary.scalar('dropout_keep_probability', keep_prob)
+    h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
 
 """ READOUT LAYER """
-W_fc2 = weight_variable([256, 10])				# Output Needs 10 Classes
-b_fc2 = bias_variable([10])
+with tf.name_scope('FCL_2_Weights'):
+    W_fc2 = weight_variable([NUM_NEURONS, NUM_LABELS])
+    
+with tf.name_scope('FCL_2_Biases'):
+    b_fc2 = bias_variable([NUM_LABELS])
 
 """ OUTPUT """
-y_conv = tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
+with tf.name_scope("Softmax"):
+    y = tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
 
+""" LOSS FUNCTION """
 # Define the loss function or cross entropy
-cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y_conv), reduction_indices=[1]))
+with tf.name_scope('Cross_Entropy'):
+    with tf.name_scope('Total'):
+        cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(y, y_))
+tf.summary.scalar("Cross_Entropy", cross_entropy)
+	
 # Define model training
-train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
-# Returns "1" if argmax(y_conv,1) = argmax(y_,1), otherwise returns "0"
-correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
-# Casts the tensor to a "float" and then calculates the mean value
-accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+with tf.name_scope('Train'):
+    train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
+        
+with tf.name_scope('Accuracy'):
+    with tf.name_scope('Correct_Prediction'):
+        # Returns "1" if argmax(y_conv,1) = argmax(y_,1), otherwise returns "0"
+        correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
+    with tf.name_scope('Accuracy'):
+        # Casts the tensor to a "float" and then calculates the mean value
+        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+tf.summary.scalar("Accuracy", accuracy)    
+
+# Merge all the summaries and write them out 
+merged = tf.summary.merge_all()
+validation_writer = tf.summary.FileWriter(LOGS_PATH)
+train_writer = tf.summary.FileWriter(LOGS_PATH)
 
 # Initialise all the variables
-sess.run(tf.initialize_all_variables())
+tf.global_variables_initializer().run()
 
 print_configuration()
 
@@ -115,21 +149,22 @@ print("Beginning training...\n")
 start_time = time.time()
 
 for i in range(TRAINING_ITERATIONS):
-  start_index = (i * BATCH_SIZE) % train_dataset.shape[0]
-  finish_index = start_index + BATCH_SIZE
-  train_batch = [train_dataset[start_index:finish_index, :], train_labels[start_index:finish_index, :]]
  
   if i % ACCURACY_TESTING_INTERVAL == 0:
     start_index = (i * BATCH_SIZE) % valid_dataset.shape[0]
     finish_index = start_index + BATCH_SIZE
     valid_batch = [valid_dataset[start_index:finish_index, :], valid_labels[start_index:finish_index, :]]
-    train_accuracy = float(accuracy.eval(feed_dict={x: valid_batch[0], y_: valid_batch[1], keep_prob: 1.0}))
-    print('Training Accuracy (Step {:0d}): {:.3f}%'.format(i, 100*train_accuracy))
-    
-  train_step.run(feed_dict={x: train_batch[0], y_: train_batch[1], keep_prob: 0.5})
+    validation_accuracy = accuracy.eval(feed_dict={x: valid_batch[0], y_: valid_batch[1], keep_prob: 1.0})
+    #print('Training Accuracy (Step {:0d}): {:.3f}%'.format(i, 100 * validation_accuracy))
+    #validation_writer.add_summary(validation_accuracy, i)
 
+  start_index = (i * BATCH_SIZE) % train_dataset.shape[0]
+  finish_index = start_index + BATCH_SIZE
+  train_batch = [train_dataset[start_index:finish_index, :], train_labels[start_index:finish_index, :]]    
+  train_accuracy = train_step.run(feed_dict={x: train_batch[0], y_: train_batch[1], keep_prob: 0.5})
+  train_writer.add_summary(train_accuracy, i)
 
-# Finally print out the results
+# Finally test and print out the results
 final_accuracy = []
 for i in range(int(test_dataset.shape[0]/BATCH_SIZE)):
 
