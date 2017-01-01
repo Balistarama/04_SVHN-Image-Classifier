@@ -19,8 +19,9 @@ code can use <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Ima
 - Update data_processor.py to split out a few thousand examples for the validation dataset <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/tick.png">
 - Configure main.py to properly import the pickled file <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/tick.png">
 - Update data_processor.py to reshape the data so it's the right formate for the Neural Net <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/tick.png">
-- Configure the Convolutional Neural Net with the right layers, dropout and values etc
-- Setup a function that automatically parses the next "batch" of test data and labels
+- Setup the Neural Net so that it accepts the new image tensors <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/tick.png">
+- Setup TensorBoard
+- Increase accuracy, current value: 16.13%
 
 ##INSTRUCTIONS:
  - Clone repository
