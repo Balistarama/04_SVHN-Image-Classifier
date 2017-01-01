@@ -13,6 +13,11 @@ from six.moves import urllib
 from scipy.io import loadmat
 import h5py
 
+NUM_LABELS = 10
+IMAGE_SIZE = 32
+NUM_CHANNELS = 3
+print('\n')
+
 # Load the raw Matlab files
 train_f = loadmat("raw/Format 2/train_32x32.mat")
 extra_f = loadmat("raw/Format 2/extra_32x32.mat")
@@ -26,8 +31,7 @@ extrax = extra_f['X']					# rows of the images (32x32x3)
 extray = extra_f['y'].flatten()				# rows of the label values
 train_dataset = np.concatenate((trainx[...], extrax[...]), axis=3)
 train_labels  = np.concatenate((trainy, extray))
-print('train_dataset shape: ' + str(train_dataset.shape))
-print('train_labels shape: ' + str(train_labels.shape))
+print('Training Set', train_dataset.shape, train_labels.shape)
 
 # Import the test images and their associated labels
 test_dataset = test_f['X']					# rows of the images (32x32x3)
@@ -39,14 +43,35 @@ valid_dataset = test_dataset[:,:,:,half_way_point:test_dataset.shape[3]]
 valid_labels = test_labels[half_way_point:test_labels.shape[0]]
 test_dataset = test_dataset[:,:,:,0:half_way_point]
 test_labels = test_labels[0:half_way_point]
-print('valid_dataset shape: ' + str(valid_dataset.shape))
-print('valid_labels shape: ' + str(valid_labels.shape))
-print('test_dataset shape: ' + str(test_dataset.shape))
-print('test_labels shape: ' + str(test_labels.shape))
+print('Validation Set', valid_dataset.shape, valid_labels.shape)
+print('Test Set', test_dataset.shape, test_labels.shape)
+
+# Reformat into a TensorFlow-friendly shape:
+# - convolutions need the image data formatted as a cube (width by height by #channels)
+# - labels as float 1-hot encodings.
+print('Reshaping Data...')
+def reformat(dataset, labels):
+
+  # Map (NUM_IMAGES, IMAGE_SIZE, IMAGE_SIZE) to (NUM_IMAGES, IMAGE_SIZE, IMAGE_SIZE, NUM_CHANNELS)
+  dataset = dataset.reshape((-1, IMAGE_SIZE, IMAGE_SIZE, NUM_CHANNELS)).astype(np.float32)
+
+  # Map 0 to [1.0, 0.0, 0.0 ...], 1 to [0.0, 1.0, 0.0 ...]
+  labels = (np.arange(NUM_LABELS) == labels[:,None]).astype(np.float32)
+  
+  return dataset, labels
+  
+train_dataset, train_labels = reformat(train_dataset, train_labels)
+valid_dataset, valid_labels = reformat(valid_dataset, valid_labels)
+test_dataset, test_labels = reformat(test_dataset, test_labels)
+
+print('Data Reshaped!')
+print('Training Set', train_dataset.shape, train_labels.shape)
+print('Validation Set', valid_dataset.shape, valid_labels.shape)
+print('Test Set', test_dataset.shape, test_labels.shape)
 
 # Finally, let's save the data for later reuse
 pickle_file = 'SVHN.pickle'
-print('\nDoing some pickling....')
+print('Doing some pickling....')
 
 try:
   f = open(pickle_file, 'wb')
