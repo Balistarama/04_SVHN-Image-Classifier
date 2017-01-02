@@ -3,10 +3,10 @@
 </div>
 
 ##04_SVHN Image Classifier
-Using the Street View House Numbers (SVHN) Dataset, this project is a state of
-the art Deep Convolutional Neural Network image to number classifier.
+Using the Street View House Numbers (SVHN) Dataset (Format 2), this project is a 
+Deep Convolutional Neural Network image to number classifier.
 
-This project is the final task in the Udacity Deep Learning course by Google 
+This project is also the final task in the Udacity Deep Learning course by Google 
 that can be found here: https://www.udacity.com/course/deep-learning--ud730
 
 ##OBJECTIVE:
@@ -21,7 +21,8 @@ code can use <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Ima
 - Update data_processor.py to reshape the data so it's the right formate for the Neural Net <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/tick.png">
 - Setup the Neural Net so that it accepts the new image tensors <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/tick.png">
 - Setup TensorBoard
-- Increase accuracy, current value: 16.13%
+- Change final fully connected layer to 128 neurons
+- Increase the models accuracy, current value: 16.13%
 
 ##INSTRUCTIONS:
  - Clone repository
