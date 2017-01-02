@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/images/master/Google%20Street%20View.png"><br>
+  <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/Google%20Street%20View.png?raw=true"><br>
 </div>
 
 ##04_SVHN Image Classifier
@@ -15,11 +15,11 @@ Build an application that can interpret numbers from real-world images.
 ##TODO:
 - Build and configure data_processor.py to load the Matlab files, extract the 
 images/labels and then pickle them into a single data file that the main.py 
-code can use <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/images/master/tick.png">
-- Update data_processor.py to split out a few thousand examples for the validation dataset <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/master/images/tick.png">
-- Configure main.py to properly import the pickled file <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/images/master/tick.png">
-- Update data_processor.py to reshape the data so it's the right formate for the Neural Net <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/images/master/tick.png">
-- Setup the Neural Net so that it accepts the new image tensors <img src="https://raw.githubusercontent.com/Balistarama/04_SVHN-Image-Classifier/images/master/tick.png">
+code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
+- Update data_processor.py to split out a few thousand examples for the validation dataset <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
+- Configure main.py to properly import the pickled file <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
+- Update data_processor.py to reshape the data so it's the right formate for the Neural Net <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
+- Setup the Neural Net so that it accepts the new image tensors <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Setup TensorBoard
 - Change final fully connected layer to 128 neurons
 - Increase the models accuracy, current value: 16.13%
