@@ -24,7 +24,8 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Change final fully connected layer to 128 neurons
 - Increase the models accuracy, current value: 16.13%
 - Once model accuracy is high enough setup [TPOT](https://github.com/rhiever/tpot) and confirm that it's running at peak efficiency
-- Deploy final solution to a Google Machine Learning Cloud
+- Deploy final solution to a Google Machine Learning Cloud-
+- Write up report
 
 ##INSTRUCTIONS:
  - Clone repository
