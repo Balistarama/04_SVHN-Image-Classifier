@@ -13,7 +13,7 @@ ACCURACY_TESTING_INTERVAL = 1000
 CONVOLUTION_SIZE = 3
 
 # Number of Neurons in the final, fully connected layer
-NUM_NEURONS = 64
+NUM_NEURONS = 128
 
 # The size of the inputted images (assumes image is always a square)0
 IMAGE_SIZE = 32
