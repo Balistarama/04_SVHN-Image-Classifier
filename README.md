@@ -21,10 +21,9 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Update data_processor.py to reshape the data so it's the right formate for the Neural Net <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Setup the Neural Net so that it accepts the new image tensors <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Setup TensorBoard
-- Change final fully connected layer to 128 neurons
-- Increase the models accuracy, current value: 16.13%
+- Increase the models accuracy, current value: 19.47%
 - Once model accuracy is high enough setup [TPOT](https://github.com/rhiever/tpot) and confirm that it's running at peak efficiency
-- Deploy final solution to a Google Machine Learning Cloud-
+- Deploy the final solution to the Google Machine Learning Cloud
 - Write up report
 
 ##INSTRUCTIONS:
