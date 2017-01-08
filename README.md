@@ -34,6 +34,7 @@ python3 src/main.py
 ```
 
 ##TENSORBOARD:
+In a seperate terminal window and from the main directory run:
 ```
 tensorboard --logdir=./logs
 ```
