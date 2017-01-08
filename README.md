@@ -33,7 +33,7 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 python3 src/main.py
 ```
 
- ##TENSORBOARD:
+##TENSORBOARD:
 ```
 tensorboard --logdir=./logs
 ```
