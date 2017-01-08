@@ -20,7 +20,8 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Configure main.py to properly import the pickled file <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Update data_processor.py to reshape the data so it's the right formate for the Neural Net <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Setup the Neural Net so that it accepts the new image tensors <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
-- Setup TensorBoard
+- Setup TensorBoard <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
+- Fix up whatever the hell is wrong with the data processing as it's outputting rubbish!!!
 - Increase the models accuracy, current value: 19.47% (Runtime: 320.92 Seconds)
 - Once model accuracy is high enough setup [TPOT](https://github.com/rhiever/tpot) and confirm that it's running at peak efficiency
 - Deploy the final solution to the Google Machine Learning Cloud
