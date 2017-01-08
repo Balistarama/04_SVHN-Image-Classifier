@@ -1,5 +1,5 @@
 # The number of training iterations the Neural Net goes through
-TRAINING_ITERATIONS = 20000
+TRAINING_ITERATIONS = 10000
 
 # The number of images and labels that get fed into the Neural 
 # Net each training iteration
