@@ -3,7 +3,7 @@ TRAINING_ITERATIONS = 10000
 
 # The number of images and labels that get fed into the Neural 
 # Net each training iteration
-BATCH_SIZE = 50
+BATCH_SIZE = 100
 
 # After this many traininig iterations the training pauses and 
 # the current training accuracy is tested using validation data
