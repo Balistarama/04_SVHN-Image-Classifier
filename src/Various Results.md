@@ -1,0 +1,129 @@
+*************************************************
+Final Model Accuracy: 71.57% (Runtime: 219.47 Seconds)
+
+Current Configuration:
+TRAINING_ITERATIONS: 5,000
+BATCH_SIZE: 50
+ACCURACY_TESTING_INTERVAL: 10
+DATASET: ../data/SVHN.pickle
+
+*************************************************
+Final Model Accuracy: 49.55% (Runtime: 10.30 Minutes)
+run4
+Current Configuration:
+TRAINING_ITERATIONS: 15,000
+BATCH_SIZE: 50
+ACCURACY_TESTING_INTERVAL: 50
+CONVOLUTION_SIZE: 5
+NUM_NEURONS: 128
+LEARNING_RATE: 0.000010
+LAYER_1_FEATURE_MAPS: 16
+LAYER_2_FEATURE_MAPS: 32
+TRAINING_KEEP_PROB: 0.900000
+
+
+*************************************************
+Final Model Accuracy: 43.38% (Runtime: 6.98 Minutes)
+Run 3
+Current Configuration:
+TRAINING_ITERATIONS: 10,000
+BATCH_SIZE: 50
+ACCURACY_TESTING_INTERVAL: 50
+CONVOLUTION_SIZE: 5
+NUM_NEURONS: 128
+LEARNING_RATE: 0.000010
+LAYER_1_FEATURE_MAPS: 16
+LAYER_2_FEATURE_MAPS: 32
+TRAINING_KEEP_PROB: 0.800000
+
+
+*************************************************
+Final Model Accuracy: 36.19% (Runtime: 7.04 Minutes)
+Run 2
+Current Configuration:
+TRAINING_ITERATIONS: 10,000
+BATCH_SIZE: 50
+ACCURACY_TESTING_INTERVAL: 50
+CONVOLUTION_SIZE: 5
+NUM_NEURONS: 128
+LEARNING_RATE: 0.000010
+LAYER_1_FEATURE_MAPS: 16
+LAYER_2_FEATURE_MAPS: 32
+TRAINING_KEEP_PROB: 0.500000
+DATASET: ../data/SVHN.pickle
+
+
+*************************************************
+Final Model Accuracy: 19.47% (Runtime: 6.78 Minutes)
+
+Current Configuration:
+TRAINING_ITERATIONS: 10,000
+BATCH_SIZE: 50
+ACCURACY_TESTING_INTERVAL: 50
+CONVOLUTION_SIZE: 5
+NUM_NEURONS: 128
+LEARNING_RATE: 0.000100
+LAYER_1_FEATURE_MAPS: 16
+LAYER_2_FEATURE_MAPS: 32
+TRAINING_KEEP_PROB: 0.500000
+DATASET: ../data/SVHN.pickle
+
+*************************************************
+Final Model Accuracy: 16.13% (Runtime: 10.53 Minutes)
+
+Current Configuration:
+TRAINING_ITERATIONS: 15,000
+BATCH_SIZE: 50
+ACCURACY_TESTING_INTERVAL: 50
+CONVOLUTION_SIZE: 5
+NUM_NEURONS: 128
+LEARNING_RATE: 0.000050
+LAYER_1_FEATURE_MAPS: 16
+LAYER_2_FEATURE_MAPS: 32
+TRAINING_KEEP_PROB: 0.800000
+
+
+*************************************************
+Final Model Accuracy: 16.13% (Runtime: 6.69 Minutes)
+Run 4
+Current Configuration:
+TRAINING_ITERATIONS: 10,000
+BATCH_SIZE: 50
+ACCURACY_TESTING_INTERVAL: 50
+CONVOLUTION_SIZE: 5
+NUM_NEURONS: 128
+LEARNING_RATE: 0.000100
+LAYER_1_FEATURE_MAPS: 16
+LAYER_2_FEATURE_MAPS: 32
+TRAINING_KEEP_PROB: 0.800000
+
+
+*************************************************
+Final Model Accuracy: 16.13% (Runtime: 1311.49 Seconds)
+
+Current Configuration:
+TRAINING_ITERATIONS: 20,000
+BATCH_SIZE: 50
+ACCURACY_TESTING_INTERVAL: 50
+CONVOLUTION_SIZE: 5
+NUM_NEURONS: 128
+LEARNING_RATE: 0.005000
+TRAINING_KEEP_PROB: 0.5
+DATASET: ../data/SVHN.pickle
+
+
+*************************************************
+Final Model Accuracy: 16.13% (Runtime: 6.93 Minutes)
+
+Current Configuration:
+TRAINING_ITERATIONS: 10,000
+BATCH_SIZE: 50
+ACCURACY_TESTING_INTERVAL: 50
+CONVOLUTION_SIZE: 5
+NUM_NEURONS: 128
+LEARNING_RATE: 0.000100
+LAYER_1_FEATURE_MAPS: 16
+LAYER_2_FEATURE_MAPS: 32
+TRAINING_KEEP_PROB: 0.900000
+DATASET: ../data/SVHN.pickle
+

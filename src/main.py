@@ -9,7 +9,8 @@ from config import *
 def weight_variable(shape):
   """ Initialize the weights with a small amount of noise for symmetry breaking """
   """ and to prevent 0 gradients """
-  initial = tf.truncated_normal(shape, stddev=0.1)
+  #initial = tf.truncated_normal(shape, stddev=0.1)
+  initial = tf.random_normal(shape, stddev=0.05)
   return tf.Variable(initial)
 
 def bias_variable(shape):
@@ -82,11 +83,11 @@ with tf.name_scope('Inputs'):
 layer_name = 'Layer_1'
 with tf.name_scope(layer_name):
     with tf.name_scope('Weights'):
-        W_conv1 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, NUM_CHANNELS, 28])
+        W_conv1 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, NUM_CHANNELS, LAYER_1_FEATURE_MAPS])
         variable_summaries(W_conv1, layer_name + '/Weights')
 
     with tf.name_scope('Biases'):
-        b_conv1 = bias_variable([28])
+        b_conv1 = bias_variable([LAYER_1_FEATURE_MAPS])
         variable_summaries(b_conv1, layer_name + '/Biases')    
     
     with tf.name_scope('Wx_plus_b'):
@@ -101,11 +102,11 @@ with tf.name_scope(layer_name):
 layer_name = 'Layer_2'
 with tf.name_scope(layer_name):
     with tf.name_scope('Weights'):
-        W_conv2 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, 28, 56])
+        W_conv2 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_1_FEATURE_MAPS, LAYER_2_FEATURE_MAPS])
         variable_summaries(W_conv2, layer_name + '/Weights')
 
     with tf.name_scope('Biases'):
-        b_conv2 = bias_variable([56])
+        b_conv2 = bias_variable([LAYER_2_FEATURE_MAPS])
         variable_summaries(b_conv2, layer_name + '/Biases')    
     
     with tf.name_scope('Wx_plus_b'):
@@ -120,14 +121,14 @@ with tf.name_scope(layer_name):
 layer_name = 'FCL_1'
 with tf.name_scope(layer_name):
     with tf.name_scope('Weights'):
-        W_fc1 = weight_variable([8 * 8 * 56, NUM_NEURONS])	
+        W_fc1 = weight_variable([8 * 8 * LAYER_2_FEATURE_MAPS, NUM_NEURONS])	
         variable_summaries(W_fc1, layer_name + '/Weights')
 
     with tf.name_scope('Biases'):
         b_fc1 = bias_variable([NUM_NEURONS])
         variable_summaries(b_fc1, layer_name + '/Biases')    
     
-    h_pool2_flat = tf.reshape(h_pool2, [-1, 8 * 8 * 56])
+    h_pool2_flat = tf.reshape(h_pool2, [-1, 8 * 8 * LAYER_2_FEATURE_MAPS])
     
     with tf.name_scope('Wx_plus_b'):
         preactivate = tf.matmul(h_pool2_flat, W_fc1) + b_fc1
@@ -166,7 +167,7 @@ tf.summary.scalar("Cross_Entropy", cross_entropy)
 	
 # Define model training
 with tf.name_scope('Train'):
-    train_step = tf.train.AdamOptimizer(0.001).minimize(cross_entropy)
+    train_step = tf.train.AdamOptimizer(LEARNING_RATE).minimize(cross_entropy)
         
 with tf.name_scope('Accuracy'):
     with tf.name_scope('Correct_Prediction'):
@@ -179,13 +180,11 @@ with tf.name_scope('Accuracy'):
 
 # Merge all the summaries and write them out 
 merged = tf.summary.merge_all()
-validation_writer = tf.summary.FileWriter(LOGS_PATH)
+validation_writer = tf.summary.FileWriter(LOGS_PATH, sess.graph)
 train_writer = tf.summary.FileWriter(LOGS_PATH, sess.graph)
 
 # Initialise all the variables
 tf.global_variables_initializer().run()
-
-print_configuration()
 
 print("Beginning training...\n")
 # Start the timer Krunk!
@@ -206,7 +205,7 @@ for i in range(TRAINING_ITERATIONS):
   finish_index = start_index + BATCH_SIZE
   train_batch = [train_dataset[start_index:finish_index, :], train_labels[start_index:finish_index, :]]    
   #train_accuracy = train_step.run(feed_dict={x: train_batch[0], y_: train_batch[1], keep_prob: 0.5})
-  summary, _ = sess.run([merged, train_step], feed_dict={x: train_batch[0], y_: train_batch[1], keep_prob: 0.5})
+  summary, _ = sess.run([merged, train_step], feed_dict={x: train_batch[0], y_: train_batch[1], keep_prob: TRAINING_KEEP_PROB})
   train_writer.add_summary(summary, i)
 
 # Finally test and print out the results
@@ -222,9 +221,8 @@ validation_writer.close()
 train_writer.close()
 
 print('\n*************************************************')
-print('Final Model Accuracy: {:.2f}% (Runtime: {:.2f} Seconds)\n'.format(100*(sum(final_accuracy) / float(len(final_accuracy))), (time.time() - start_time)) )
-
-
+print('Final Model Accuracy: {:.2f}% (Runtime: {:.2f} Minutes)\n'.format(100*(sum(final_accuracy) / float(len(final_accuracy))), (time.time() - start_time)/60) )
+print_configuration()
 
 
 

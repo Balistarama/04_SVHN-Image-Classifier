@@ -1,21 +1,5 @@
-# The number of training iterations the Neural Net goes through
-TRAINING_ITERATIONS = 10000
-
-# The number of images and labels that get fed into the Neural 
-# Net each training iteration
-BATCH_SIZE = 100
-
-# After this many traininig iterations the training pauses and 
-# the current training accuracy is tested using validation data
-ACCURACY_TESTING_INTERVAL = 1000
-
-# The size of the convolution patch
-CONVOLUTION_SIZE = 3
-
-# Number of Neurons in the final, fully connected layer
-NUM_NEURONS = 128
-
-# The size of the inputted images (assumes image is always a square)0
+''' Settings regarding the dataset and image properties '''
+# The size of the inputted images (assumes image is always a square)
 IMAGE_SIZE = 32
 
 # The number of channels for each image (eg. RGB = 3)
@@ -33,10 +17,46 @@ LOGS_PATH = "../logs"
 # Location of preprocessed dataset, see data/README for processing details
 DATASET = '../data/SVHN.pickle'
 
+''' Model Hyperparamaters '''
+# The number of training iterations the Neural Net goes through
+TRAINING_ITERATIONS = 10000
+
+# The number of images and labels that get fed into the Neural 
+# Net each training iteration
+BATCH_SIZE = 100
+
+# After this many traininig iterations the training pauses and 
+# the current training accuracy is tested using validation data
+ACCURACY_TESTING_INTERVAL = 50
+
+# The size of the convolution patch
+CONVOLUTION_SIZE = 5
+
+# Number of feature maps in the first layer
+LAYER_1_FEATURE_MAPS = 16
+
+# Number of feature maps in the second layer
+LAYER_2_FEATURE_MAPS = LAYER_1_FEATURE_MAPS * 2
+
+# Number of Neurons in the final, fully connected layer
+NUM_NEURONS = 128
+
+# The learning rate for the gradient optimizer
+LEARNING_RATE = 0.00001
+
+# The Keep Probability used for the training steps ONLY
+TRAINING_KEEP_PROB = 0.9
+
 def print_configuration():
   """ A quick function to print out all the Neural Nets current settings """
-  print('\nCurrent Configuration:')
+  print('Current Configuration:')
   print('TRAINING_ITERATIONS: ' + '{:,d}'.format(TRAINING_ITERATIONS))
   print('BATCH_SIZE: ' + '{:,d}'.format(BATCH_SIZE))
   print('ACCURACY_TESTING_INTERVAL: ' '{:,d}'.format(ACCURACY_TESTING_INTERVAL))
+  print('CONVOLUTION_SIZE: ' '{:,d}'.format(CONVOLUTION_SIZE))
+  print('NUM_NEURONS: ' '{:,d}'.format(NUM_NEURONS))
+  print('LEARNING_RATE: ' '{:f}'.format(LEARNING_RATE))
+  print('LAYER_1_FEATURE_MAPS: ' '{:,d}'.format(LAYER_1_FEATURE_MAPS))
+  print('LAYER_2_FEATURE_MAPS: ' '{:,d}'.format(LAYER_2_FEATURE_MAPS)) 
+  print('TRAINING_KEEP_PROB: ' '{:f}'.format(TRAINING_KEEP_PROB)) 
   print('DATASET: ' + DATASET)
