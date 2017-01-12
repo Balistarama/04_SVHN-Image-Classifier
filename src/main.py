@@ -10,7 +10,7 @@ def weight_variable(shape):
   """ Initialize the weights with a small amount of noise for symmetry breaking """
   """ and to prevent 0 gradients """
   #initial = tf.truncated_normal(shape, stddev=0.1)
-  initial = tf.random_normal(shape, stddev=1.0)
+  initial = tf.random_normal(shape, stddev=0.1)
   return tf.Variable(initial)
 
 def bias_variable(shape):
