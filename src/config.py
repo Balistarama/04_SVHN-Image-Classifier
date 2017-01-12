@@ -18,12 +18,15 @@ LOGS_PATH = "../logs"
 DATASET = '../data/SVHN.pickle'
 
 ''' Model Hyperparamaters '''
-# The number of training iterations the Neural Net goes through
-TRAINING_ITERATIONS = 10000
+# Number of times the network should train on ALL the training examples
+TRAINING_EPOCHS = 1
 
 # The number of images and labels that get fed into the Neural 
 # Net each training iteration
-BATCH_SIZE = 100
+BATCH_SIZE = 50
+
+# The number of training iterations the Neural Net goes through
+TRAINING_ITERATIONS = TRAINING_EPOCHS * int(604388/BATCH_SIZE)
 
 # After this many traininig iterations the training pauses and 
 # the current training accuracy is tested using validation data
@@ -33,7 +36,7 @@ ACCURACY_TESTING_INTERVAL = 50
 CONVOLUTION_SIZE = 5
 
 # Number of feature maps in the first layer
-LAYER_1_FEATURE_MAPS = 16
+LAYER_1_FEATURE_MAPS = 4
 
 # Number of feature maps in the second layer
 LAYER_2_FEATURE_MAPS = LAYER_1_FEATURE_MAPS * 2
@@ -58,5 +61,6 @@ def print_configuration():
   print('LEARNING_RATE: ' '{:f}'.format(LEARNING_RATE))
   print('LAYER_1_FEATURE_MAPS: ' '{:,d}'.format(LAYER_1_FEATURE_MAPS))
   print('LAYER_2_FEATURE_MAPS: ' '{:,d}'.format(LAYER_2_FEATURE_MAPS)) 
-  print('TRAINING_KEEP_PROB: ' '{:f}'.format(TRAINING_KEEP_PROB)) 
+  print('TRAINING_KEEP_PROB: ' '{:f}'.format(TRAINING_KEEP_PROB))
+  print('TRAINING_EPOCHS: ' '{:,d}'.format(TRAINING_EPOCHS)) 
   print('DATASET: ' + DATASET)
