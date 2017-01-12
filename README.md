@@ -23,7 +23,7 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Setup TensorBoard <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Fix up whatever the hell is wrong with the data processing as it's outputting rubbish!!! <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Redefined all the hyperparamaters to be in the config.py file <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
-- Increase the models accuracy, current value: 71.57% (Runtime: 219.47 Seconds)
+- Increase the models accuracy, current value: 82.15% (Runtime: 99.36 Minutes)
 - Once model accuracy is high enough setup [TPOT](https://github.com/rhiever/tpot) and confirm that it's running at peak efficiency
 - Deploy the final solution to the Google Machine Learning Cloud
 - Write up report
@@ -44,3 +44,4 @@ tensorboard --logdir=./logs
 ##REFERENCES:
 You're welcome to use any and all code but a reference back to 
 https://github.com/Balistarama would be appreciated
+
