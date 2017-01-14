@@ -261,7 +261,7 @@ for i in range(TRAINING_ITERATIONS):
   train_batch = [train_dataset[start_index:finish_index, :], train_labels[start_index:finish_index, :]]    
   #train_accuracy = train_step.run(feed_dict={x: train_batch[0], y_: train_batch[1], keep_prob: 0.5})
   summary, _ = sess.run([merged, train_step], feed_dict={x: train_batch[0], y_: train_batch[1], keep_prob: TRAINING_KEEP_PROB})
-  train_writer.add_summary(summary, i)
+  #train_writer.add_summary(summary, i)
 
 # Finally test and print out the results
 final_accuracy = []
