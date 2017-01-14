@@ -250,10 +250,10 @@ for i in range(TRAINING_ITERATIONS):
     #validation_accuracy = accuracy.eval(feed_dict={x: valid_batch[0], y_: valid_batch[1], keep_prob: 1.0})
     summary, acc = sess.run([merged, accuracy], feed_dict={x: valid_batch[0], y_: valid_batch[1], keep_prob: 1.0})
     validation_writer.add_summary(summary, i)
-    
+
+    # Calculates the time remaining and adds in a bunch of stats then displays it all
     if i != 0:
       estimated_time_remaining = ( ((time.time() - start_time)/60) * (1 / (i/TRAINING_ITERATIONS)) ) - ( (time.time() - start_time)/60 )
-      #print('Training Accuracy: %s%   / Iteration: %s/%s   / Time Remaining: %f' % (int(100*acc), i, ACCURACY_TESTING_INTERVAL, estimated_time_remaining))
       print('Training Accuracy: {:.0f}% - Iteration: {:,d}/{:,d} ({:.0f}%) - Time Remaining: {:,.2f} Minutes'.format(int(100*acc), i, TRAINING_ITERATIONS, int(100*(i/TRAINING_ITERATIONS)), estimated_time_remaining))      
 
   start_index = (i * BATCH_SIZE) % train_dataset.shape[0]
