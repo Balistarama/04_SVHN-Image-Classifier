@@ -1,4 +1,4 @@
-''' Settings regarding the dataset and image properties '''
+''' DATASET SETTINGS '''
 # The size of the inputted images (assumes image is always a square)
 IMAGE_SIZE = 32
 
