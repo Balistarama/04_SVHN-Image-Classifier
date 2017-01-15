@@ -51,9 +51,11 @@ This file takes in the raw .mat files that are downloaded from the Stanford webs
 - http://ufldl.stanford.edu/housenumbers/test_32x32.mat
 - http://ufldl.stanford.edu/housenumbers/extra_32x32.mat
 This file merges the two "train" and "extra" files to create a huge training set:
+
 Training Set:  (604388, 32, 32, 3) (604388, 10)
 
 It then splits up the "test" images into two separate "validation" and "testing" datasets:
+
 Validation Set:  (13016, 32, 32, 3) (13016, 10)
 Testing Set: (13016, 32, 32, 3) (13016, 10)
 
@@ -72,6 +74,7 @@ balistarama@Computer:~/04_SVHN Image Classifier/src$ python3 main.py
 ```
 It will let you know what's happening at every step of the way including printing out the sizes of the datasets being used for the training as well as giving you feedback as the network is trained.
 ```
+...
 Training Accuracy: 77% - Iteration: 5,978,000/6,043,880 (98%) - Time Remaining: 7.05 Minutes
 Training Accuracy: 93% - Iteration: 5,980,000/6,043,880 (98%) - Time Remaining: 6.84 Minutes
 Training Accuracy: 82% - Iteration: 5,982,000/6,043,880 (98%) - Time Remaining: 6.62 Minutes
