@@ -9,11 +9,23 @@ Deep Convolutional Neural Network to perform image to number classiffication.
 This project is also the final task in the Udacity Deep Learning course by Google 
 that can be found here: https://www.udacity.com/course/deep-learning--ud730
 
-##OBJECTIVE:
-Build an application that can interpret numbers from real-world images.
-
 ##CURRENT BEST ACCURACY ACHIEVED:
 - 88.68% (Runtime: 646.84 Minutes)
+
+##MODEL ARCHITECTURE:
+- INPUT [32x32x3]
+- CONV1_1 [32x32x4]
+- CONV1_2 [32x32x4]
+- POOL [16x16x4]
+- CONV2_1 [16x16x8]
+- CONV2_2 [16x16x8]
+- POOL [8x8x8]
+- CONV3_1 [8x8x16]
+- CONV3_2 [8x8x16]
+- POOL [4x4x16]
+- FULLY CONNECTED [4x4x1024]
+- DROPOUT
+- SOFTMAX [1024x10]
 
 ##SYSTEM USED:
 ###Software
@@ -21,6 +33,7 @@ Build an application that can interpret numbers from real-world images.
 - TensorFlow
 - numpy
 - six.moves
+
 ###Hardware
 - CPU: Intel Core i7-6700 3.4GHz Quad-Core Processor
 - Motherboard: Gigabyte GA-Z170X-Gaming 7 ATX LGA1151 Motherboard
@@ -28,7 +41,7 @@ Build an application that can interpret numbers from real-world images.
 - Storage: Samsung 960 PRO 512GB M.2-2280 Solid State Drive
 - Video Card: Gigabyte GeForce GTX 1070 8GB G1 Gaming Video Card
 
-##TODO:
+##TODO LIST:
 - Build and configure data_processor.py to load the Matlab files, extract the 
 images/labels and then pickle them into a single data file that the main.py 
 code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
@@ -44,12 +57,13 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Deploy the final solution to the Google Machine Learning Cloud
 - Write up report
 
-##INSTRUCTIONS
+##INSTRUCTIONS:
 ###data/data_processor.py
 This file takes in the raw .mat files that are downloaded from the Stanford website and munges it into a form that is both accepted by the network but also splits and joins things. The original data sets come in three "train, test and extra" .mat files.
 - http://ufldl.stanford.edu/housenumbers/train_32x32.mat
 - http://ufldl.stanford.edu/housenumbers/test_32x32.mat
 - http://ufldl.stanford.edu/housenumbers/extra_32x32.mat
+
 This file merges the two "train" and "extra" files to create a huge training set:
 
 Training Set:  (604388, 32, 32, 3) (604388, 10)
@@ -85,7 +99,7 @@ Training Accuracy: 87% - Iteration: 5,988,000/6,043,880 (99%) - Time Remaining: 
 ```
 
 ##TENSORBOARD:
-In a seperate terminal window and from the main directory run:
+If you would like to enable TensorBoard logging (note this drastically slows down training) you can uncomment the code in main.py and then in a seperate terminal window and from the main directory run:
 ```
 tensorboard --logdir=./logs
 ```
