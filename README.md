@@ -58,30 +58,30 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Write up report
 
 ##INSTRUCTIONS:
-###data/data_processor.py
-This file takes in the raw .mat files that are downloaded from the Stanford website and munges it into a form that is both accepted by the network but also splits and joins things. The original data sets come in three "train, test and extra" .mat files.
+###Data Munging Script (data/data_processor.py)
+This file takes in the raw .mat files that are downloaded from the Stanford website below and munges it into a form that is both accepted by the network but also splits and joins things. The original data sets come in three "train, test and extra" .mat files.
 - http://ufldl.stanford.edu/housenumbers/train_32x32.mat
 - http://ufldl.stanford.edu/housenumbers/test_32x32.mat
 - http://ufldl.stanford.edu/housenumbers/extra_32x32.mat
 
-This file merges the two "train" and "extra" files to create a huge training set:
+This file merges the two "train" and "extra" files to create a huge training set of the form [IMAGE, IMAGE_SIZE, IMAGE_SIZE, NUM_CHANNELS]:
 
-Training Set:  (604388, 32, 32, 3) (604388, 10)
+- Training Set: (604388, 32, 32, 3)
 
 It then splits up the "test" images into two separate "validation" and "testing" datasets:
 
-Validation Set:  (13016, 32, 32, 3) (13016, 10)
-Testing Set: (13016, 32, 32, 3) (13016, 10)
+- Validation Set: (13016, 32, 32, 3)
+- Testing Set: (13016, 32, 32, 3)
 
 Finally it reshapes them all and writes them to a single pickle file. You will need to download the .mat files and then run this data_processor.py script ONCE to create the .pickle file.
 ```
 balistarama@Computer:~/04_SVHN Image Classifier/data$ python3 data_processor.py
 ```
 
-###src/config.py
+###Configuration Script (src/config.py)
 This file is only used to configure the neural network that's stored in src/main.py. Open the file up in any text editor type in the batch size, number of feature maps on each layer and many more paramaters (including hyperaramters too) and then run the main.py file.
 
-###src/main.py
+###Main Network Script (src/main.py)
 This file is where the network is built, defined and trained. Simply setup your configuration setting in the config.py file and run main.py!
 ```
 balistarama@Computer:~/04_SVHN Image Classifier/src$ python3 main.py
@@ -99,7 +99,7 @@ Training Accuracy: 87% - Iteration: 5,988,000/6,043,880 (99%) - Time Remaining: 
 ```
 
 ##TENSORBOARD:
-If you would like to enable TensorBoard logging (note this drastically slows down training) you can uncomment the code in main.py and then in a seperate terminal window and from the main directory run:
+If you would like to enable TensorBoard logging (note this drastically slows down training!) you can uncomment the code in main.py and then in a seperate terminal window and from the main directory run:
 ```
 tensorboard --logdir=./logs
 ```
