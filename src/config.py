@@ -1,3 +1,5 @@
+import sys
+
 ''' DATASET SETTINGS '''
 # The size of the inputted images (assumes image is always a square)
 IMAGE_SIZE = 32
@@ -19,24 +21,24 @@ DATASET = '../data/SVHN.pickle'
 
 ''' TRAINING SIZES '''
 # Number of times the network should train on ALL the training examples (effects training time!!! double X = 2.1x the time)
-TRAINING_EPOCHS = 200
+TRAINING_EPOCHS = 5
 
 # The number of images and labels that get fed into the Neural Net each training iteration
-BATCH_SIZE = 128
+BATCH_SIZE = 50
 
 # The number of training iterations the Neural Net goes through
 TRAINING_ITERATIONS = int(TRAINING_EPOCHS * (604388/BATCH_SIZE))
 
 # After this many traininig iterations the training pauses and 
 # the current training accuracy is tested using validation data
-ACCURACY_TESTING_INTERVAL = 1000
+ACCURACY_TESTING_INTERVAL = 2000
 
 ''' MODEL DESIGN '''
 # The size of the convolution patch (effects memory not training time)
-CONVOLUTION_SIZE = 5
+CONVOLUTION_SIZE = 5								#int(sys.argv[1])
 
 # Number of feature maps in the first layer (effects training time!!! double X = 1.8x the time)
-LAYER_1_FEATURE_MAPS = 4
+LAYER_1_FEATURE_MAPS = 2
 
 # Number of feature maps in the second layer
 LAYER_2_FEATURE_MAPS = LAYER_1_FEATURE_MAPS * 2
@@ -45,7 +47,7 @@ LAYER_2_FEATURE_MAPS = LAYER_1_FEATURE_MAPS * 2
 LAYER_3_FEATURE_MAPS = LAYER_2_FEATURE_MAPS * 2
 
 # Number of Neurons in the first, fully connected layer
-LAYER_1_FC_NEURONS = 4096
+LAYER_1_FC_NEURONS = 1024
 
 ''' MODEL HYPERPARAMETERS '''
 # The learning rate for the gradient optimizer
@@ -56,7 +58,7 @@ TRAINING_KEEP_PROB = 0.9
 
 def print_configuration():
   """ A quick function to print out all the Neural Nets current settings """
-  print('\n*************************************************')
+  print('*************************************************')
   print('TRAINING_EPOCHS: {:,d}'.format(int(TRAINING_EPOCHS))) 
   print('BATCH_SIZE: {:,d}'.format(BATCH_SIZE))
   print('TRAINING_ITERATIONS: {:,d}'.format(TRAINING_ITERATIONS))
