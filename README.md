@@ -90,4 +90,3 @@ tensorboard --logdir=./logs
 ##REFERENCES:
 You're welcome to use any and all code but a reference back to 
 https://github.com/Balistarama would be appreciated
-
