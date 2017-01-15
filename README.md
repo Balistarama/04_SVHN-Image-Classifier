@@ -15,9 +15,13 @@ Build an application that can interpret numbers from real-world images.
 ##CURRENT BEST ACCURACY ACHIEVED:
 - 88.68% (Runtime: 646.84 Minutes)
 
-##SYSTEM:
-- Ubunutu 16.04
+##SYSTEM USED:
+###Software
+- Ubunutu
 - TensorFlow
+- numpy
+- six.moves
+###Hardware
 - CPU: Intel Core i7-6700 3.4GHz Quad-Core Processor
 - Motherboard: Gigabyte GA-Z170X-Gaming 7 ATX LGA1151 Motherboard
 - Memory: Corsair Vengeance LPX 32GB (4 x 8GB) DDR4-2666 Memory
@@ -40,9 +44,20 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Deploy the final solution to the Google Machine Learning Cloud
 - Write up report
 
-##FILE DESCRIPTION
+##INSTRUCTIONS
 ###data/data_processor.py
-This file takes in the raw .mat files that you download from the Stanford website and munges it into a form that is both accepted by the network but also splits and joins things. The original data sets come in three "train, test and extra" .mat files. This file merges the two "train" and "extra" files to create a huge training set, splits up the "test" images into two separate "validation" and "testing" datasets and then finally reshapes them all and writes them to a single pickle file. You will need to download the .mat files and then run this file once to create the .pickle file, from then onwards it's no longer needed.
+This file takes in the raw .mat files that are downloaded from the Stanford website and munges it into a form that is both accepted by the network but also splits and joins things. The original data sets come in three "train, test and extra" .mat files.
+- http://ufldl.stanford.edu/housenumbers/train_32x32.mat
+- http://ufldl.stanford.edu/housenumbers/test_32x32.mat
+- http://ufldl.stanford.edu/housenumbers/extra_32x32.mat
+This file merges the two "train" and "extra" files to create a huge training set:
+Training Set:  (604388, 32, 32, 3) (604388, 10)
+
+It then splits up the "test" images into two separate "validation" and "testing" datasets:
+Validation Set:  (13016, 32, 32, 3) (13016, 10)
+Testing Set: (13016, 32, 32, 3) (13016, 10)
+
+Finally it reshapes them all and writes them to a single pickle file. You will need to download the .mat files and then run this data_processor.py script ONCE to create the .pickle file.
 ```
 balistarama@Computer:~/04_SVHN Image Classifier/data$ python3 data_processor.py
 ```
@@ -64,12 +79,6 @@ Training Accuracy: 85% - Iteration: 5,984,000/6,043,880 (99%) - Time Remaining: 
 Training Accuracy: 86% - Iteration: 5,986,000/6,043,880 (99%) - Time Remaining: 6.20 Minutes
 Training Accuracy: 87% - Iteration: 5,988,000/6,043,880 (99%) - Time Remaining: 5.98 Minutes
 ...
-```
-
-##INSTRUCTIONS:
- - Follow the data/README to download and munge the raw dataset
-```
-python3 src/main.py
 ```
 
 ##TENSORBOARD:
