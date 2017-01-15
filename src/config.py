@@ -21,7 +21,7 @@ DATASET = '../data/SVHN.pickle'
 
 ''' TRAINING SIZES '''
 # Number of times the network should train on ALL the training examples (effects training time!!! double X = 2.1x the time)
-TRAINING_EPOCHS = 5
+TRAINING_EPOCHS = 500
 
 # The number of images and labels that get fed into the Neural Net each training iteration
 BATCH_SIZE = 50
@@ -38,7 +38,7 @@ ACCURACY_TESTING_INTERVAL = 2000
 CONVOLUTION_SIZE = 5								#int(sys.argv[1])
 
 # Number of feature maps in the first layer (effects training time!!! double X = 1.8x the time)
-LAYER_1_FEATURE_MAPS = 2
+LAYER_1_FEATURE_MAPS = 4
 
 # Number of feature maps in the second layer
 LAYER_2_FEATURE_MAPS = LAYER_1_FEATURE_MAPS * 2
