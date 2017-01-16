@@ -23,7 +23,8 @@ that can be found here: https://www.udacity.com/course/deep-learning--ud730
 - CONV3_1 [8x8x16]
 - CONV3_2 [8x8x16]
 - POOL [4x4x16]
-- FULLY CONNECTED [4x4x1024]
+- FULLY CONNECTED [128]
+- FULLY CONNECTED [128]
 - DROPOUT
 - SOFTMAX [1024x10]
 
@@ -52,7 +53,7 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Setup TensorBoard <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Fix up whatever the hell is wrong with the data processing as it's outputting rubbish!!! <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Redefined all the hyperparamaters to be in the config.py file <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
-- Add in a second fully connected layer
+- Add in a second fully connected layer <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Add in three convolutions per "layer"
 - Increase the models accuracy...
 - Once model accuracy is high enough setup [TPOT](https://github.com/rhiever/tpot) and confirm that it's running at peak efficiency
