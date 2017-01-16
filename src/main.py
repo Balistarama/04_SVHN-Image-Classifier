@@ -136,7 +136,7 @@ with tf.name_scope(layer_name):
         h_pool2 = max_pool_2x2(activations)
         #tf.summary.histogram(layer_name + '/poolings', h_pool2)  
 
-""" LAYER 3 """
+""" LAYER 3 
 layer_name = 'Layer_3'
 with tf.name_scope(layer_name):
     with tf.name_scope('Weights'):
@@ -165,36 +165,55 @@ with tf.name_scope(layer_name):
         h_pool3 = max_pool_2x2(activations)
         #tf.summary.histogram(layer_name + '/poolings', h_pool3)  
 
+"""
+
 """ FULLY CONNECTED LAYER 1 """
 layer_name = 'FC_LAYER_1'
 with tf.name_scope(layer_name):
     with tf.name_scope('Weights'):
-        W_fc1 = weight_variable([4 * 4 * LAYER_3_FEATURE_MAPS, LAYER_1_FC_NEURONS])	
+        W_fc1 = weight_variable([8 * 8 * LAYER_2_FEATURE_MAPS, LAYER_1_FC_NEURONS])
         #variable_summaries(W_fc1, layer_name + '/Weights')
 
     with tf.name_scope('Biases'):
         b_fc1 = bias_variable([LAYER_1_FC_NEURONS])
         #variable_summaries(b_fc1, layer_name + '/Biases')    
     
-    h_pool3_flat = tf.reshape(h_pool3, [-1, 4 * 4 * LAYER_3_FEATURE_MAPS])
+    h_pool3_flat = tf.reshape(h_pool2, [-1, 8 * 8 * LAYER_2_FEATURE_MAPS])
     
     with tf.name_scope('MATMUL_RELU'):
         preactivate = tf.matmul(h_pool3_flat, W_fc1) + b_fc1
         #tf.summary.histogram(layer_name + '/pre_activations', preactivate)
         h_fc1 = tf.nn.relu(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations', h_fc1) 
-        
+
 """ DROPOUT LAYER """
 with tf.name_scope('Dropout'):
     keep_prob = tf.placeholder(tf.float32)
     #tf.summary.scalar('dropout_keep_probability', keep_prob)
-    h_fc2_drop = tf.nn.dropout(h_fc1, keep_prob)
+    h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
+        
+""" FULLY CONNECTED LAYER 2 """
+layer_name = 'FC_LAYER_2'
+with tf.name_scope(layer_name):
+    with tf.name_scope('Weights'):
+        W_fc2 = weight_variable([LAYER_1_FC_NEURONS, LAYER_2_FC_NEURONS])	
+        #variable_summaries(W_fc2, layer_name + '/Weights')
+
+    with tf.name_scope('Biases'):
+        b_fc2 = bias_variable([LAYER_2_FC_NEURONS])
+        #variable_summaries(b_fc2, layer_name + '/Biases')    
+
+    with tf.name_scope('MATMUL_RELU'):
+        preactivate = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
+        #tf.summary.histogram(layer_name + '/pre_activations', preactivate)
+        h_fc2 = tf.nn.relu(preactivate, name='activation')
+        #tf.summary.histogram(layer_name + '/activations', h_fc2) 
 
 """ OUTPUT """
 layer_name = 'Output_Layer'
 with tf.name_scope(layer_name):
     with tf.name_scope('Weights'):
-        W_output = weight_variable([LAYER_1_FC_NEURONS, NUM_LABELS])
+        W_output = weight_variable([LAYER_2_FC_NEURONS, NUM_LABELS])
         #variable_summaries(W_output, layer_name + '/Weights')
 
     with tf.name_scope('Biases'):
@@ -202,7 +221,7 @@ with tf.name_scope(layer_name):
         #variable_summaries(b_output, layer_name + '/Biases')  
 
     with tf.name_scope('MATMUL_SOFTMAX'):
-        preactivate = tf.matmul(h_fc2_drop, W_output) + b_output
+        preactivate = tf.matmul(h_fc2, W_output) + b_output
         #tf.summary.histogram(layer_name + '/pre_activations', preactivate)
         y = tf.nn.softmax(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations', y) 

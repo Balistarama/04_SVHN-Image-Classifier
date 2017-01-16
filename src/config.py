@@ -21,10 +21,10 @@ DATASET = '../data/SVHN.pickle'
 
 ''' TRAINING SIZES '''
 # Number of times the network should train on ALL the training examples (effects training time!!! double X = 2.1x the time)
-TRAINING_EPOCHS = 500
+TRAINING_EPOCHS = 250
 
 # The number of images and labels that get fed into the Neural Net each training iteration
-BATCH_SIZE = 50
+BATCH_SIZE = 128
 
 # The number of training iterations the Neural Net goes through
 TRAINING_ITERATIONS = int(TRAINING_EPOCHS * (604388/BATCH_SIZE))
@@ -35,10 +35,10 @@ ACCURACY_TESTING_INTERVAL = 2000
 
 ''' MODEL DESIGN '''
 # The size of the convolution patch (effects memory not training time)
-CONVOLUTION_SIZE = 5								#int(sys.argv[1])
+CONVOLUTION_SIZE = 3								#int(sys.argv[1])
 
 # Number of feature maps in the first layer (effects training time!!! double X = 1.8x the time)
-LAYER_1_FEATURE_MAPS = 4
+LAYER_1_FEATURE_MAPS = 32
 
 # Number of feature maps in the second layer
 LAYER_2_FEATURE_MAPS = LAYER_1_FEATURE_MAPS * 2
@@ -49,12 +49,15 @@ LAYER_3_FEATURE_MAPS = LAYER_2_FEATURE_MAPS * 2
 # Number of Neurons in the first, fully connected layer
 LAYER_1_FC_NEURONS = 1024
 
+# Number of Neurons in the first, fully connected layer
+LAYER_2_FC_NEURONS = 128
+
 ''' MODEL HYPERPARAMETERS '''
 # The learning rate for the gradient optimizer
 LEARNING_RATE = 0.00001
 
 # The Keep Probability used for the training steps ONLY
-TRAINING_KEEP_PROB = 0.9
+TRAINING_KEEP_PROB = 0.5
 
 def print_configuration():
   """ A quick function to print out all the Neural Nets current settings """
@@ -64,6 +67,6 @@ def print_configuration():
   print('TRAINING_ITERATIONS: {:,d}'.format(TRAINING_ITERATIONS))
   print('CONVOLUTION_SIZE: {:,d}'.format(CONVOLUTION_SIZE))
   print('FEATURE_MAPS: Layer 1 = {:,d}, Layer 2 = {:,d}, Layer 3 = {:,d}'.format(LAYER_1_FEATURE_MAPS, LAYER_2_FEATURE_MAPS, LAYER_3_FEATURE_MAPS))
-  print('LAYER_1_FC_NEURONS: {:,d}'.format(LAYER_1_FC_NEURONS))
+  print('FC_NEURONS: Layer 1 = {:,d}, Layer 2 = {:,d}'.format(LAYER_1_FC_NEURONS, LAYER_2_FC_NEURONS))
   print('LEARNING_RATE: {:f}'.format(LEARNING_RATE))
   print('TRAINING_KEEP_PROB: {:f}'.format(TRAINING_KEEP_PROB))
