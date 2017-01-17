@@ -14,12 +14,12 @@ that can be found here: https://www.udacity.com/course/deep-learning--ud730
 
 ##MODEL ARCHITECTURE:
 - INPUT [32x32x3]
-- CONV1_1 [32x32x4]
-- CONV1_2 [32x32x4]
-- POOL [16x16x4]
-- CONV2_1 [16x16x8]
-- CONV2_2 [16x16x8]
-- POOL [8x8x8]
+- CONV1_1 [32x32x32]
+- CONV1_2 [32x32x32]
+- POOL [16x16x32]
+- CONV2_1 [16x16x64]
+- CONV2_2 [16x16x64]
+- POOL [8x8x64]
 - FULLY CONNECTED [1024]
 - DROPOUT
 - FULLY CONNECTED [128]
