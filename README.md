@@ -10,7 +10,7 @@ This project is also the final task in the Udacity Deep Learning course by Googl
 that can be found here: https://www.udacity.com/course/deep-learning--ud730
 
 ##CURRENT BEST ACCURACY ACHIEVED:
-- 88.68% (Runtime: 646.84 Minutes)
+- 89.53% (Runtime: 256 Minutes)
 
 ##MODEL ARCHITECTURE:
 - INPUT [32x32x3]
@@ -20,12 +20,9 @@ that can be found here: https://www.udacity.com/course/deep-learning--ud730
 - CONV2_1 [16x16x8]
 - CONV2_2 [16x16x8]
 - POOL [8x8x8]
-- CONV3_1 [8x8x16]
-- CONV3_2 [8x8x16]
-- POOL [4x4x16]
-- FULLY CONNECTED [128]
-- FULLY CONNECTED [128]
+- FULLY CONNECTED [1024]
 - DROPOUT
+- FULLY CONNECTED [128]
 - SOFTMAX [1024x10]
 
 ##SYSTEM USED:
@@ -54,7 +51,7 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Fix up whatever the hell is wrong with the data processing as it's outputting rubbish!!! <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Redefined all the hyperparamaters to be in the config.py file <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Add in a second fully connected layer <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
-- Add in three convolutions per "layer"
+- Try out a three convolutions per "layer" model
 - Increase the models accuracy...
 - Once model accuracy is high enough setup [TPOT](https://github.com/rhiever/tpot) and confirm that it's running at peak efficiency
 - Deploy the final solution to the Google Machine Learning Cloud
