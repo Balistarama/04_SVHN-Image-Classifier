@@ -52,7 +52,7 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Redefined all the hyperparamaters to be in the config.py file <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Add in a second fully connected layer <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Try out a three convolutions per "layer" model (didn't help) <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
-- Introduce a decaying learning rate
+- Introduce a decaying learning rate, decreased it whenever the validation error stops decreasing. Use the schedule 0.025, 0.0125, 0.0001
 - Introduce NIN (mlpconv) layers
 - Introduce Hidden Layer Supervision
 - Increase the models accuracy...
