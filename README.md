@@ -53,11 +53,10 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Add in a second fully connected layer <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Try out a three convolutions per "layer" model (didn't help) <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Tweak ReLU activation function to PReLU or RReLU (use tf.maximum(alpha*x, x) and tweak or randomize alpha)
-- Introduce a decaying learning rate that halves it whenever the validation error stops decreasing
-- Introduce NIN (mlpconv) layers
-- Introduce Hidden Layer Supervision
-- Increase the models accuracy...
-- Once model accuracy is high enough setup [TPOT](https://github.com/rhiever/tpot) and confirm that it's running at peak efficiency
+- Introduce a decaying learning rate that halves whenever the validation error stops decreasing
+- Introduce NIN (mlpconv) layers???
+- Introduce Hidden Layer Supervision???
+- Setup [TPOT](https://github.com/rhiever/tpot) and see if that increases its efficiency
 - Deploy the final solution to the Google Machine Learning Cloud
 - Write up report
 
