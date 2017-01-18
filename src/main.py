@@ -44,7 +44,7 @@ def variable_summaries(var, name):
     tf.summary.histogram(name, var)
 
 # Import the dataset from the main pickle file
-print('\nImporting Data from "' + DATASET + '"')
+#print('\nImporting Data from "' + DATASET + '"')
 
 try:
   f = open(DATASET, 'rb')
@@ -62,11 +62,11 @@ test_dataset = saved_pickle['test_dataset']
 test_labels = saved_pickle['test_labels']
 del saved_pickle  # Frees up memory
 
-print('Data Imported!')
-print('Training Set: ', train_dataset.shape, train_labels.shape)
-print('Validation Set: ', valid_dataset.shape, valid_labels.shape)
-print('Testing Set:', test_dataset.shape, test_labels.shape)
-print('\n')
+#print('Data Imported!')
+#print('Training Set: ', train_dataset.shape, train_labels.shape)
+#print('Validation Set: ', valid_dataset.shape, valid_labels.shape)
+#print('Testing Set:', test_dataset.shape, test_labels.shape)
+#print('\n')
 
 # Define the entire model of the Neural Network for Tensorflow
 """ START SESSION """
@@ -86,12 +86,16 @@ with tf.name_scope(layer_name):
         #variable_summaries(W_conv1_1, layer_name + '/Weights')
         W_conv1_2 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_1_FEATURE_MAPS, LAYER_1_FEATURE_MAPS])
         #variable_summaries(W_conv1_2, layer_name + '/Weights')
+        #W_conv1_3 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_1_FEATURE_MAPS, LAYER_1_FEATURE_MAPS])
+        #variable_summaries(W_conv1_3, layer_name + '/Weights')
 
     with tf.name_scope('Biases'):
         b_conv1_1 = bias_variable([LAYER_1_FEATURE_MAPS])
         #variable_summaries(b_conv1_1, layer_name + '/Biases')    
         b_conv1_2 = bias_variable([LAYER_1_FEATURE_MAPS])
         #variable_summaries(b_conv1_2, layer_name + '/Biases')    
+        #b_conv1_3 = bias_variable([LAYER_1_FEATURE_MAPS])
+        #variable_summaries(b_conv1_3, layer_name + '/Biases')    
             
     with tf.name_scope('CONV_RELU_x2_POOL'):
         preactivate = conv2d(x, W_conv1_1) + b_conv1_1
@@ -103,7 +107,12 @@ with tf.name_scope(layer_name):
         #tf.summary.histogram(layer_name + '/pre_activations_2', preactivate)
         activations = tf.nn.relu(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_2', activations)  
-        
+            
+        #preactivate = conv2d(activations, W_conv1_3) + b_conv1_3
+        #tf.summary.histogram(layer_name + '/pre_activations_3', preactivate)
+        #activations = tf.nn.relu(preactivate, name='activation')
+        #tf.summary.histogram(layer_name + '/activations_3', activations)   
+       
         h_pool1 = max_pool_2x2(activations)
         #tf.summary.histogram(layer_name + '/poolings', h_pool1)  
         
@@ -115,12 +124,16 @@ with tf.name_scope(layer_name):
         #variable_summaries(W_conv2_1, layer_name + '/Weights')
         W_conv2_2 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_2_FEATURE_MAPS, LAYER_2_FEATURE_MAPS])
         #variable_summaries(W_conv2_2, layer_name + '/Weights')
+        #W_conv2_3 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_2_FEATURE_MAPS, LAYER_2_FEATURE_MAPS])
+        #variable_summaries(W_conv2_3, layer_name + '/Weights')
 
     with tf.name_scope('Biases'):
         b_conv2_1 = bias_variable([LAYER_2_FEATURE_MAPS])
         #variable_summaries(b_conv2_1, layer_name + '/Biases')    
         b_conv2_2 = bias_variable([LAYER_2_FEATURE_MAPS])
         #variable_summaries(b_conv2_2, layer_name + '/Biases')  
+        #b_conv2_3 = bias_variable([LAYER_2_FEATURE_MAPS])
+        #variable_summaries(b_conv2_3, layer_name + '/Biases')  
     
     with tf.name_scope('CONV_RELU_x2_POOL'):
         preactivate = conv2d(h_pool1, W_conv2_1) + b_conv2_1
@@ -132,7 +145,12 @@ with tf.name_scope(layer_name):
         #tf.summary.histogram(layer_name + '/pre_activations_2', preactivate)
         activations = tf.nn.relu(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_2', activations)  
-        
+               
+        #preactivate = conv2d(activations, W_conv2_3) + b_conv2_3
+        #tf.summary.histogram(layer_name + '/pre_activations_3', preactivate)
+        #activations = tf.nn.relu(preactivate, name='activation')
+        #tf.summary.histogram(layer_name + '/activations_3', activations)  
+     
         h_pool2 = max_pool_2x2(activations)
         #tf.summary.histogram(layer_name + '/poolings', h_pool2)  
 
@@ -144,12 +162,16 @@ with tf.name_scope(layer_name):
         #variable_summaries(W_conv3_1, layer_name + '/Weights')
         W_conv3_2 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_3_FEATURE_MAPS, LAYER_3_FEATURE_MAPS])
         #variable_summaries(W_conv3_2, layer_name + '/Weights')
+        W_conv3_3 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_3_FEATURE_MAPS, LAYER_3_FEATURE_MAPS])
+        #variable_summaries(W_conv3_3, layer_name + '/Weights')
 
     with tf.name_scope('Biases'):
         b_conv3_1 = bias_variable([LAYER_3_FEATURE_MAPS])
         #variable_summaries(b_conv3_1, layer_name + '/Biases')    
         b_conv3_2 = bias_variable([LAYER_3_FEATURE_MAPS])
         #variable_summaries(b_conv3_2, layer_name + '/Biases')    
+        b_conv3_3 = bias_variable([LAYER_3_FEATURE_MAPS])
+        #variable_summaries(b_conv3_3, layer_name + '/Biases')  
             
     with tf.name_scope('CONV_RELU_x2_POOL'):
         preactivate = conv2d(h_pool2, W_conv3_1) + b_conv3_1
@@ -161,7 +183,12 @@ with tf.name_scope(layer_name):
         #tf.summary.histogram(layer_name + '/pre_activations_2', preactivate)
         activations = tf.nn.relu(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_2', activations)  
-        
+            
+        preactivate = conv2d(activations, W_conv3_3) + b_conv3_3
+        #tf.summary.histogram(layer_name + '/pre_activations_3', preactivate)
+        activations = tf.nn.relu(preactivate, name='activation')
+        #tf.summary.histogram(layer_name + '/activations_3', activations)  
+                
         h_pool3 = max_pool_2x2(activations)
         #tf.summary.histogram(layer_name + '/poolings', h_pool3)  
 
@@ -178,10 +205,10 @@ with tf.name_scope(layer_name):
         b_fc1 = bias_variable([LAYER_1_FC_NEURONS])
         #variable_summaries(b_fc1, layer_name + '/Biases')    
     
-    h_pool3_flat = tf.reshape(h_pool2, [-1, 8 * 8 * LAYER_2_FEATURE_MAPS])
+    h_pool2_flat = tf.reshape(h_pool2, [-1, 8 * 8 * LAYER_2_FEATURE_MAPS])
     
     with tf.name_scope('MATMUL_RELU'):
-        preactivate = tf.matmul(h_pool3_flat, W_fc1) + b_fc1
+        preactivate = tf.matmul(h_pool2_flat, W_fc1) + b_fc1
         #tf.summary.histogram(layer_name + '/pre_activations', preactivate)
         h_fc1 = tf.nn.relu(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations', h_fc1) 

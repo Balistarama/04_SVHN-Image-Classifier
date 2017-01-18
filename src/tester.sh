@@ -1,8 +1,12 @@
 #!/bin/sh
 #test_param=0
-for i in `seq 1 9`;
+for i in `seq 1 5`;
 do
-    test_param=$((0.5+($i*0.05)))
-    #echo Neurons Num Equals: $test_param
-    python3 main.py $test_param
+    for j in `seq 1 5`;
+    do
+        BATCH_SIZE=$((64+($i*64)))
+        LAYER_2_FC_NEURONS=$((128+($j*64)))
+        #echo Neurons Num Equals: $test_param
+        python3 main.py $BATCH_SIZE $LAYER_2_FC_NEURONS >> results.txt
+    done
 done

@@ -21,7 +21,7 @@ DATASET = '../data/SVHN.pickle'
 
 ''' TRAINING SIZES '''
 # Number of times the network should train on ALL the training examples (effects training time!!! double X = 2.1x the time)
-TRAINING_EPOCHS = 250
+TRAINING_EPOCHS = 5
 
 # The number of images and labels that get fed into the Neural Net each training iteration
 BATCH_SIZE = 128
@@ -50,7 +50,7 @@ LAYER_3_FEATURE_MAPS = LAYER_2_FEATURE_MAPS * 2
 LAYER_1_FC_NEURONS = 1024
 
 # Number of Neurons in the first, fully connected layer
-LAYER_2_FC_NEURONS = 128
+LAYER_2_FC_NEURONS = 256
 
 ''' MODEL HYPERPARAMETERS '''
 # The learning rate for the gradient optimizer
