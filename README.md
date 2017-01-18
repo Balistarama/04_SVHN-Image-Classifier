@@ -53,6 +53,8 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Add in a second fully connected layer <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Try out a three convolutions per "layer" model (didn't help) <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Introduce a decaying learning rate
+- Introduce NIN (mlpconv) layers
+- Introduce Hidden Layer Supervision
 - Increase the models accuracy...
 - Once model accuracy is high enough setup [TPOT](https://github.com/rhiever/tpot) and confirm that it's running at peak efficiency
 - Deploy the final solution to the Google Machine Learning Cloud
