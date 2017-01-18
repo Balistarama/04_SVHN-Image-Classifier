@@ -10,7 +10,7 @@ This project is also the final task in the Udacity Deep Learning course by Googl
 that can be found here: https://www.udacity.com/course/deep-learning--ud730
 
 ##CURRENT BEST ACCURACY ACHIEVED:
-- 89.53% (Runtime: 256 Minutes)
+- 89.53% after 250 Epochs (Runtime: 256 Minutes)
 
 ##MODEL ARCHITECTURE:
 - INPUT [32x32x3]
