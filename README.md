@@ -22,7 +22,7 @@ that can be found here: https://www.udacity.com/course/deep-learning--ud730
 - POOL [8x8x64]
 - FULLY CONNECTED [1024]
 - DROPOUT
-- FULLY CONNECTED [128]
+- FULLY CONNECTED [256]
 - SOFTMAX [1024x10]
 
 ##SYSTEM USED:
