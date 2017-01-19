@@ -287,6 +287,9 @@ print("Beginning training...")
 # Start the timer Krunk!
 start_time = time.time()
 
+# The number of training iterations the Neural Net goes through
+TRAINING_ITERATIONS = int(TRAINING_EPOCHS * (train_dataset.shape[0]/BATCH_SIZE))
+
 for i in range(TRAINING_ITERATIONS):
  
   if i % ACCURACY_TESTING_INTERVAL == 0:
