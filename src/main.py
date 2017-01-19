@@ -289,10 +289,11 @@ start_time = time.time()
 
 # The number of training iterations the Neural Net goes through
 TRAINING_ITERATIONS = int(TRAINING_EPOCHS * (train_dataset.shape[0]/BATCH_SIZE))
+validation_accuracies = []
 
 for i in range(TRAINING_ITERATIONS):
  
-  if i % ACCURACY_TESTING_INTERVAL == 0:
+  if i % ACCURACY_TESTING_INTERVAL == 0 and i != 0:
     start_index = (i * BATCH_SIZE) % valid_dataset.shape[0]
     finish_index = start_index + BATCH_SIZE
     valid_batch = [valid_dataset[start_index:finish_index, :], valid_labels[start_index:finish_index, :]]
@@ -300,10 +301,15 @@ for i in range(TRAINING_ITERATIONS):
     summary, acc = sess.run([merged, accuracy], feed_dict={x: valid_batch[0], y_: valid_batch[1], keep_prob: 1.0})
     #validation_writer.add_summary(summary, i)
 
+    # If the previous validation accuracy matches this ones decay the learning rate for faster convergence 
+    validation_accuracies.append(acc)
+    if validation_accuracies[(i/ACCURACY_TESTING_INTERVAL)-2] == acc:
+      LEARNING_RATE = LEARNING_RATE / 2
+      print('************* Learning Rate Updated: {:f} *************'.format(LEARNING_RATE)
+
     # Calculates the time remaining and adds in a bunch of stats then displays it all
-    if i != 0:
-      estimated_time_remaining = ( ((time.time() - start_time)/60) * (1 / (i/TRAINING_ITERATIONS)) ) - ( (time.time() - start_time)/60 )
-      print('Training Accuracy: {:.0f}% - Iteration: {:,d}/{:,d} ({:.0f}%) - Time Remaining: {:,.2f} Minutes'.format(int(100*acc), i, TRAINING_ITERATIONS, int(100*(i/TRAINING_ITERATIONS)), estimated_time_remaining))      
+    estimated_time_remaining = ( ((time.time() - start_time)/60) * (1 / (i/TRAINING_ITERATIONS)) ) - ( (time.time() - start_time)/60 )
+    print('Validation Accuracy: {:.0f}% - Iteration: {:,d}/{:,d} ({:.0f}%) - Time Remaining: {:,.2f} Minutes'.format(int(100*acc), i, TRAINING_ITERATIONS, int(100*(i/TRAINING_ITERATIONS)), estimated_time_remaining))      
 
   start_index = (i * BATCH_SIZE) % train_dataset.shape[0]
   finish_index = start_index + BATCH_SIZE
