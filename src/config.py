@@ -26,9 +26,6 @@ TRAINING_EPOCHS = 5
 # The number of images and labels that get fed into the Neural Net each training iteration
 BATCH_SIZE = 128
 
-# The number of training iterations the Neural Net goes through
-TRAINING_ITERATIONS = int(TRAINING_EPOCHS * (604388/BATCH_SIZE))
-
 # After this many traininig iterations the training pauses and 
 # the current training accuracy is tested using validation data
 ACCURACY_TESTING_INTERVAL = 2000
@@ -49,7 +46,7 @@ LAYER_3_FEATURE_MAPS = LAYER_2_FEATURE_MAPS * 2
 # Number of Neurons in the first, fully connected layer
 LAYER_1_FC_NEURONS = 1024
 
-# Number of Neurons in the first, fully connected layer
+# Number of Neurons in the second, fully connected layer
 LAYER_2_FC_NEURONS = 256
 
 ''' MODEL HYPERPARAMETERS '''
@@ -64,7 +61,6 @@ def print_configuration():
   print('*************************************************')
   print('TRAINING_EPOCHS: {:,d}'.format(int(TRAINING_EPOCHS))) 
   print('BATCH_SIZE: {:,d}'.format(BATCH_SIZE))
-  print('TRAINING_ITERATIONS: {:,d}'.format(TRAINING_ITERATIONS))
   print('CONVOLUTION_SIZE: {:,d}'.format(CONVOLUTION_SIZE))
   print('FEATURE_MAPS: Layer 1 = {:,d}, Layer 2 = {:,d}, Layer 3 = {:,d}'.format(LAYER_1_FEATURE_MAPS, LAYER_2_FEATURE_MAPS, LAYER_3_FEATURE_MAPS))
   print('FC_NEURONS: Layer 1 = {:,d}, Layer 2 = {:,d}'.format(LAYER_1_FC_NEURONS, LAYER_2_FC_NEURONS))
