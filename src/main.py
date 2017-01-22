@@ -1,4 +1,5 @@
 from __future__ import print_function
+import math
 import numpy as np
 import tensorflow as tf
 import time # For time stats
@@ -100,17 +101,17 @@ with tf.name_scope(layer_name):
     with tf.name_scope('CONV_RELU_x2_POOL'):
         preactivate = conv2d(x, W_conv1_1) + b_conv1_1
         #tf.summary.histogram(layer_name + '/pre_activations_1', preactivate)
-        activations = tf.nn.relu(preactivate, name='activation')
+        activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_1', activations)  
             
         preactivate = conv2d(activations, W_conv1_2) + b_conv1_2
         #tf.summary.histogram(layer_name + '/pre_activations_2', preactivate)
-        activations = tf.nn.relu(preactivate, name='activation')
+        activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_2', activations)  
             
         #preactivate = conv2d(activations, W_conv1_3) + b_conv1_3
         #tf.summary.histogram(layer_name + '/pre_activations_3', preactivate)
-        #activations = tf.nn.relu(preactivate, name='activation')
+        #activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_3', activations)   
        
         h_pool1 = max_pool_2x2(activations)
@@ -138,17 +139,17 @@ with tf.name_scope(layer_name):
     with tf.name_scope('CONV_RELU_x2_POOL'):
         preactivate = conv2d(h_pool1, W_conv2_1) + b_conv2_1
         #tf.summary.histogram(layer_name + '/pre_activations_1', preactivate)
-        activations = tf.nn.relu(preactivate, name='activation')
+        activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_1', activations)  
             
         preactivate = conv2d(activations, W_conv2_2) + b_conv2_2
         #tf.summary.histogram(layer_name + '/pre_activations_2', preactivate)
-        activations = tf.nn.relu(preactivate, name='activation')
+        activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_2', activations)  
                
         #preactivate = conv2d(activations, W_conv2_3) + b_conv2_3
         #tf.summary.histogram(layer_name + '/pre_activations_3', preactivate)
-        #activations = tf.nn.relu(preactivate, name='activation')
+        #activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_3', activations)  
      
         h_pool2 = max_pool_2x2(activations)
@@ -176,17 +177,17 @@ with tf.name_scope(layer_name):
     with tf.name_scope('CONV_RELU_x2_POOL'):
         preactivate = conv2d(h_pool2, W_conv3_1) + b_conv3_1
         #tf.summary.histogram(layer_name + '/pre_activations_1', preactivate)
-        activations = tf.nn.relu(preactivate, name='activation')
+        activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_1', activations)  
             
         preactivate = conv2d(activations, W_conv3_2) + b_conv3_2
         #tf.summary.histogram(layer_name + '/pre_activations_2', preactivate)
-        activations = tf.nn.relu(preactivate, name='activation')
+        activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_2', activations)  
             
         preactivate = conv2d(activations, W_conv3_3) + b_conv3_3
         #tf.summary.histogram(layer_name + '/pre_activations_3', preactivate)
-        activations = tf.nn.relu(preactivate, name='activation')
+        activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_3', activations)  
                 
         h_pool3 = max_pool_2x2(activations)
@@ -210,7 +211,7 @@ with tf.name_scope(layer_name):
     with tf.name_scope('MATMUL_RELU'):
         preactivate = tf.matmul(h_pool2_flat, W_fc1) + b_fc1
         #tf.summary.histogram(layer_name + '/pre_activations', preactivate)
-        h_fc1 = tf.nn.relu(preactivate, name='activation')
+        h_fc1 = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations', h_fc1) 
 
 """ DROPOUT LAYER """
@@ -233,7 +234,7 @@ with tf.name_scope(layer_name):
     with tf.name_scope('MATMUL_RELU'):
         preactivate = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
         #tf.summary.histogram(layer_name + '/pre_activations', preactivate)
-        h_fc2 = tf.nn.relu(preactivate, name='activation')
+        h_fc2 = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations', h_fc2) 
 
 """ OUTPUT """
@@ -302,10 +303,10 @@ for i in range(TRAINING_ITERATIONS):
     #validation_writer.add_summary(summary, i)
 
     # If the previous validation accuracy matches this ones decay the learning rate for faster convergence 
-    validation_accuracies.append(acc)
-    if validation_accuracies[(i/ACCURACY_TESTING_INTERVAL)-2] == acc:
-      LEARNING_RATE = LEARNING_RATE / 2
-      print('************* Learning Rate Updated: {:f} *************'.format(LEARNING_RATE)
+    #validation_accuracies.append(acc)
+    #if math.isclose(validation_accuracies[int((i/ACCURACY_TESTING_INTERVAL)-2)], acc, rel_tol=1e-5) == True:
+    #  LEARNING_RATE = LEARNING_RATE / 2
+    #  print('************* Learning Rate Updated: {:f} *************'.format(LEARNING_RATE))
 
     # Calculates the time remaining and adds in a bunch of stats then displays it all
     estimated_time_remaining = ( ((time.time() - start_time)/60) * (1 / (i/TRAINING_ITERATIONS)) ) - ( (time.time() - start_time)/60 )
