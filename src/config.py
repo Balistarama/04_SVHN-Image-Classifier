@@ -43,6 +43,9 @@ LAYER_2_FEATURE_MAPS = LAYER_1_FEATURE_MAPS * 2
 # Number of feature maps in the third layer
 LAYER_3_FEATURE_MAPS = LAYER_2_FEATURE_MAPS * 2
 
+# Number of feature maps in the forth layer
+LAYER_4_FEATURE_MAPS = LAYER_3_FEATURE_MAPS * 2
+
 # Number of Neurons in the first, fully connected layer
 LAYER_1_FC_NEURONS = 1024
 
@@ -62,7 +65,7 @@ def print_configuration():
   print('TRAINING_EPOCHS: {:,d}'.format(int(TRAINING_EPOCHS))) 
   print('BATCH_SIZE: {:,d}'.format(BATCH_SIZE))
   print('CONVOLUTION_SIZE: {:,d}'.format(CONVOLUTION_SIZE))
-  print('FEATURE_MAPS: Layer 1 = {:,d}, Layer 2 = {:,d}, Layer 3 = {:,d}'.format(LAYER_1_FEATURE_MAPS, LAYER_2_FEATURE_MAPS, LAYER_3_FEATURE_MAPS))
+  print('FEATURE_MAPS: Layer 1 = {:,d}, Layer 2 = {:,d}, Layer 3 = {:,d}, Layer 4 = {:,d}'.format(LAYER_1_FEATURE_MAPS, LAYER_2_FEATURE_MAPS, LAYER_3_FEATURE_MAPS, LAYER_4_FEATURE_MAPS))
   print('FC_NEURONS: Layer 1 = {:,d}, Layer 2 = {:,d}'.format(LAYER_1_FC_NEURONS, LAYER_2_FC_NEURONS))
   print('LEARNING_RATE: {:f}'.format(LEARNING_RATE))
   print('TRAINING_KEEP_PROB: {:f}'.format(TRAINING_KEEP_PROB))

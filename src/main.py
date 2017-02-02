@@ -6,7 +6,7 @@ import time # For time stats
 from six.moves import cPickle as pickle
 from six.moves import range
 from config import *
-
+decayed_learning_rate = LEARNING_RATE
 def weight_variable(shape):
   """ Initialize the weights with a small amount of noise for symmetry breaking """
   """ and to prevent 0 gradients """
@@ -87,7 +87,7 @@ with tf.name_scope(layer_name):
         #variable_summaries(W_conv1_1, layer_name + '/Weights')
         W_conv1_2 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_1_FEATURE_MAPS, LAYER_1_FEATURE_MAPS])
         #variable_summaries(W_conv1_2, layer_name + '/Weights')
-        #W_conv1_3 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_1_FEATURE_MAPS, LAYER_1_FEATURE_MAPS])
+        W_conv1_3 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_1_FEATURE_MAPS, LAYER_1_FEATURE_MAPS])
         #variable_summaries(W_conv1_3, layer_name + '/Weights')
 
     with tf.name_scope('Biases'):
@@ -95,7 +95,7 @@ with tf.name_scope(layer_name):
         #variable_summaries(b_conv1_1, layer_name + '/Biases')    
         b_conv1_2 = bias_variable([LAYER_1_FEATURE_MAPS])
         #variable_summaries(b_conv1_2, layer_name + '/Biases')    
-        #b_conv1_3 = bias_variable([LAYER_1_FEATURE_MAPS])
+        b_conv1_3 = bias_variable([LAYER_1_FEATURE_MAPS])
         #variable_summaries(b_conv1_3, layer_name + '/Biases')    
             
     with tf.name_scope('CONV_RELU_x2_POOL'):
@@ -109,9 +109,9 @@ with tf.name_scope(layer_name):
         activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_2', activations)  
             
-        #preactivate = conv2d(activations, W_conv1_3) + b_conv1_3
+        preactivate = conv2d(activations, W_conv1_3) + b_conv1_3
         #tf.summary.histogram(layer_name + '/pre_activations_3', preactivate)
-        #activations = tf.nn.relu6(preactivate, name='activation')
+        activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_3', activations)   
        
         h_pool1 = max_pool_2x2(activations)
@@ -125,7 +125,7 @@ with tf.name_scope(layer_name):
         #variable_summaries(W_conv2_1, layer_name + '/Weights')
         W_conv2_2 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_2_FEATURE_MAPS, LAYER_2_FEATURE_MAPS])
         #variable_summaries(W_conv2_2, layer_name + '/Weights')
-        #W_conv2_3 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_2_FEATURE_MAPS, LAYER_2_FEATURE_MAPS])
+        W_conv2_3 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_2_FEATURE_MAPS, LAYER_2_FEATURE_MAPS])
         #variable_summaries(W_conv2_3, layer_name + '/Weights')
 
     with tf.name_scope('Biases'):
@@ -133,7 +133,7 @@ with tf.name_scope(layer_name):
         #variable_summaries(b_conv2_1, layer_name + '/Biases')    
         b_conv2_2 = bias_variable([LAYER_2_FEATURE_MAPS])
         #variable_summaries(b_conv2_2, layer_name + '/Biases')  
-        #b_conv2_3 = bias_variable([LAYER_2_FEATURE_MAPS])
+        b_conv2_3 = bias_variable([LAYER_2_FEATURE_MAPS])
         #variable_summaries(b_conv2_3, layer_name + '/Biases')  
     
     with tf.name_scope('CONV_RELU_x2_POOL'):
@@ -147,15 +147,15 @@ with tf.name_scope(layer_name):
         activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_2', activations)  
                
-        #preactivate = conv2d(activations, W_conv2_3) + b_conv2_3
+        preactivate = conv2d(activations, W_conv2_3) + b_conv2_3
         #tf.summary.histogram(layer_name + '/pre_activations_3', preactivate)
-        #activations = tf.nn.relu6(preactivate, name='activation')
+        activations = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations_3', activations)  
      
         h_pool2 = max_pool_2x2(activations)
         #tf.summary.histogram(layer_name + '/poolings', h_pool2)  
 
-""" LAYER 3 
+""" LAYER 3 """
 layer_name = 'Layer_3'
 with tf.name_scope(layer_name):
     with tf.name_scope('Weights'):
@@ -193,23 +193,60 @@ with tf.name_scope(layer_name):
         h_pool3 = max_pool_2x2(activations)
         #tf.summary.histogram(layer_name + '/poolings', h_pool3)  
 
-"""
+""" LAYER 4 """
+layer_name = 'Layer_4'
+with tf.name_scope(layer_name):
+    with tf.name_scope('Weights'):
+        W_conv4_1 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_3_FEATURE_MAPS, LAYER_4_FEATURE_MAPS])
+        #variable_summaries(W_conv3_1, layer_name + '/Weights')
+        W_conv4_2 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_4_FEATURE_MAPS, LAYER_4_FEATURE_MAPS])
+        #variable_summaries(W_conv3_2, layer_name + '/Weights')
+        W_conv4_3 = weight_variable([CONVOLUTION_SIZE, CONVOLUTION_SIZE, LAYER_4_FEATURE_MAPS, LAYER_4_FEATURE_MAPS])
+        #variable_summaries(W_conv3_3, layer_name + '/Weights')
+
+    with tf.name_scope('Biases'):
+        b_conv4_1 = bias_variable([LAYER_4_FEATURE_MAPS])
+        #variable_summaries(b_conv3_1, layer_name + '/Biases')    
+        b_conv4_2 = bias_variable([LAYER_4_FEATURE_MAPS])
+        #variable_summaries(b_conv3_2, layer_name + '/Biases')    
+        b_conv4_3 = bias_variable([LAYER_4_FEATURE_MAPS])
+        #variable_summaries(b_conv3_3, layer_name + '/Biases')  
+            
+    with tf.name_scope('CONV_RELU_x2_POOL'):
+        preactivate = conv2d(h_pool3, W_conv4_1) + b_conv4_1
+        #tf.summary.histogram(layer_name + '/pre_activations_1', preactivate)
+        activations = tf.nn.relu6(preactivate, name='activation')
+        #tf.summary.histogram(layer_name + '/activations_1', activations)  
+            
+        preactivate = conv2d(activations, W_conv4_2) + b_conv4_2
+        #tf.summary.histogram(layer_name + '/pre_activations_2', preactivate)
+        activations = tf.nn.relu6(preactivate, name='activation')
+        #tf.summary.histogram(layer_name + '/activations_2', activations)  
+            
+        preactivate = conv2d(activations, W_conv4_3) + b_conv4_3
+        #tf.summary.histogram(layer_name + '/pre_activations_3', preactivate)
+        activations = tf.nn.relu6(preactivate, name='activation')
+        #tf.summary.histogram(layer_name + '/activations_3', activations)  
+                
+        h_pool4 = max_pool_2x2(activations)
+        #tf.summary.histogram(layer_name + '/poolings', h_pool3)  
+
 
 """ FULLY CONNECTED LAYER 1 """
 layer_name = 'FC_LAYER_1'
 with tf.name_scope(layer_name):
     with tf.name_scope('Weights'):
-        W_fc1 = weight_variable([8 * 8 * LAYER_2_FEATURE_MAPS, LAYER_1_FC_NEURONS])
+        W_fc1 = weight_variable([2 * 2 * LAYER_4_FEATURE_MAPS, LAYER_1_FC_NEURONS])
         #variable_summaries(W_fc1, layer_name + '/Weights')
 
     with tf.name_scope('Biases'):
         b_fc1 = bias_variable([LAYER_1_FC_NEURONS])
         #variable_summaries(b_fc1, layer_name + '/Biases')    
     
-    h_pool2_flat = tf.reshape(h_pool2, [-1, 8 * 8 * LAYER_2_FEATURE_MAPS])
+    h_pool4_flat = tf.reshape(h_pool4, [-1, 2 * 2 * LAYER_4_FEATURE_MAPS])
     
     with tf.name_scope('MATMUL_RELU'):
-        preactivate = tf.matmul(h_pool2_flat, W_fc1) + b_fc1
+        preactivate = tf.matmul(h_pool4_flat, W_fc1) + b_fc1
         #tf.summary.histogram(layer_name + '/pre_activations', preactivate)
         h_fc1 = tf.nn.relu6(preactivate, name='activation')
         #tf.summary.histogram(layer_name + '/activations', h_fc1) 
@@ -262,7 +299,7 @@ tf.summary.scalar("Cross_Entropy", cross_entropy)
 	
 # Define model training
 with tf.name_scope('Train'):
-    train_step = tf.train.AdamOptimizer(LEARNING_RATE).minimize(cross_entropy)
+    train_step = tf.train.AdamOptimizer(decayed_learning_rate).minimize(cross_entropy)
         
 with tf.name_scope('Accuracy'):
     with tf.name_scope('Correct_Prediction'):
@@ -293,6 +330,10 @@ TRAINING_ITERATIONS = int(TRAINING_EPOCHS * (train_dataset.shape[0]/BATCH_SIZE))
 validation_accuracies = []
 
 for i in range(TRAINING_ITERATIONS):
+
+  #if i % int(train_dataset.shape[0]/BATCH_SIZE) == 0 and i != 0:
+    #tf.random_shuffle(train_dataset)
+    #print('************* TRAING DATA SHUFFLED *************')
  
   if i % ACCURACY_TESTING_INTERVAL == 0 and i != 0:
     start_index = (i * BATCH_SIZE) % valid_dataset.shape[0]
@@ -304,9 +345,9 @@ for i in range(TRAINING_ITERATIONS):
 
     # If the previous validation accuracy matches this ones decay the learning rate for faster convergence 
     #validation_accuracies.append(acc)
-    #if math.isclose(validation_accuracies[int((i/ACCURACY_TESTING_INTERVAL)-2)], acc, rel_tol=1e-5) == True:
-    #  LEARNING_RATE = LEARNING_RATE / 2
-    #  print('************* Learning Rate Updated: {:f} *************'.format(LEARNING_RATE))
+    #if math.isclose(validation_accuracies[int((i/ACCURACY_TESTING_INTERVAL)-2)], acc, rel_tol=1e-2) == True:
+      #decayed_learning_rate = decayed_learning_rate / 5
+      #print('************* decayed_learning_rate UPDATE: {:.20f} *************'.format(decayed_learning_rate))
 
     # Calculates the time remaining and adds in a bunch of stats then displays it all
     estimated_time_remaining = ( ((time.time() - start_time)/60) * (1 / (i/TRAINING_ITERATIONS)) ) - ( (time.time() - start_time)/60 )
