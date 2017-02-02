@@ -10,19 +10,29 @@ This project is also the final task in the Udacity Deep Learning course by Googl
 that can be found here: https://www.udacity.com/course/deep-learning--ud730
 
 ##CURRENT BEST ACCURACY ACHIEVED:
-- 89.53% after 250 Epochs (Runtime: 256 Minutes)
+- 89.69% after 75 Epochs (Runtime: 177 Minutes)
 
 ##MODEL ARCHITECTURE:
 - INPUT [32x32x3]
 - CONV1_1 [32x32x32]
 - CONV1_2 [32x32x32]
+- CONV1_3 [32x32x32]
 - POOL [16x16x32]
 - CONV2_1 [16x16x64]
 - CONV2_2 [16x16x64]
+- CONV2_3 [16x16x64]
 - POOL [8x8x64]
+- CONV2_1 [8x8x128]
+- CONV2_2 [8x8x128]
+- CONV2_3 [8x8x128]
+- POOL [4x4x128]
+- CONV2_1 [4x4x256]
+- CONV2_2 [4x4x256]
+- CONV2_3 [4x4x256]
+- POOL [4x4x256]
 - FULLY CONNECTED [1024]
 - DROPOUT
-- FULLY CONNECTED [256]
+- FULLY CONNECTED [1024]
 - SOFTMAX [1024x10]
 
 ##SYSTEM USED:
@@ -52,11 +62,11 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Redefined all the hyperparamaters to be in the config.py file <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Add in a second fully connected layer <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Try out a three convolutions per "layer" model (didn't help) <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
-- Tweak ReLU activation function to PReLU or RReLU (use tf.maximum(alpha*x, x) and tweak or randomize alpha)
-- Introduce a decaying learning rate that halves whenever the validation error stops decreasing
-- Introduce NIN (mlpconv) layers???
-- Introduce Hidden Layer Supervision???
-- Setup [TPOT](https://github.com/rhiever/tpot) and see if that increases its efficiency
+- Introduce a decaying learning rate, decreased it whenever the validation error stops decreasing (didn't help) <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
+- Introduce NIN (mlpconv) layers
+- Introduce Hidden Layer Supervision
+- Increase the models accuracy...
+- Once model accuracy is high enough setup [TPOT](https://github.com/rhiever/tpot) and confirm that it's running at peak efficiency
 - Deploy the final solution to the Google Machine Learning Cloud
 - Write up report
 
