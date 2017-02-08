@@ -37,17 +37,16 @@ that can be found here: https://www.udacity.com/course/deep-learning--ud730
 
 ##SYSTEM USED:
 ###Software
-- Ubunutu
+- Ubunutu 16.04
 - TensorFlow
-- numpy
-- six.moves
+- Associated Libraries
 
 ###Hardware
-- CPU: Intel Core i7-6700 3.4GHz Quad-Core Processor
-- Motherboard: Gigabyte GA-Z170X-Gaming 7 ATX LGA1151 Motherboard
-- Memory: Corsair Vengeance LPX 32GB (4 x 8GB) DDR4-2666 Memory
-- Storage: Samsung 960 PRO 512GB M.2-2280 Solid State Drive
-- Video Card: Gigabyte GeForce GTX 1070 8GB G1 Gaming Video Card
+- Intel Core i7-6700 3.4GHz CPU
+- Gigabyte GA-Z170X-Gaming 7 ATX LGA1151 Motherboard
+- Corsair Vengeance LPX 32GB (4 x 8GB) DDR4-2666 Memory
+- Samsung 960 PRO 512GB M.2-2280 Solid State Drive
+- Gigabyte GeForce GTX 1070 8GB G1 Gaming Video Card
 
 ##TODO LIST:
 - Build and configure data_processor.py to load the Matlab files, extract the 
