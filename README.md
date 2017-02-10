@@ -29,11 +29,11 @@ that can be found here: https://www.udacity.com/course/deep-learning--ud730
 - CONV2_1 [4x4x256]
 - CONV2_2 [4x4x256]
 - CONV2_3 [4x4x256]
-- POOL [4x4x256]
+- POOL [2x2x256]
 - FULLY CONNECTED [1024]
 - DROPOUT
-- FULLY CONNECTED [1024]
-- SOFTMAX [1024x10]
+- FULLY CONNECTED [256]
+- SOFTMAX [256x10]
 
 ##SYSTEM USED:
 ###Software
@@ -62,9 +62,7 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Add in a second fully connected layer <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Try out a three convolutions per "layer" model (didn't help) <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Introduce a decaying learning rate, decreased it whenever the validation error stops decreasing (didn't help) <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
-- Introduce NIN (mlpconv) layers
-- Introduce Hidden Layer Supervision
-- Increase the models accuracy...
+- Increase the models accuracy as much as possible <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Once model accuracy is high enough setup [TPOT](https://github.com/rhiever/tpot) and confirm that it's running at peak efficiency
 - Deploy the final solution to the Google Machine Learning Cloud
 - Write up report
