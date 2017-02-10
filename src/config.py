@@ -32,23 +32,18 @@ ACCURACY_TESTING_INTERVAL = 2000
 
 ''' MODEL DESIGN '''
 # The size of the convolution patch (effects memory not training time)
-CONVOLUTION_SIZE = 3								#int(sys.argv[1])
+CONVOLUTION_SIZE = 3
 
 # Number of feature maps (effects training time!!! double X = 1.8x the time)
 LAYER_1_FEATURE_MAPS = 32
 LAYER_2_FEATURE_MAPS = LAYER_1_FEATURE_MAPS * 2
 LAYER_3_FEATURE_MAPS = LAYER_2_FEATURE_MAPS * 2
 LAYER_4_FEATURE_MAPS = LAYER_3_FEATURE_MAPS * 2
+LAYER_5_FEATURE_MAPS = LAYER_4_FEATURE_MAPS * 2
 
 # Number of Neurons, fully connected layers
 LAYER_1_FC_NEURONS = 1024
 LAYER_2_FC_NEURONS = 256
-
-# Number of Neurons in the MLP, fully connected layers
-LAYER_1_MLP_NEURONS = 8192
-LAYER_2_MLP_NEURONS = 8192
-LAYER_3_MLP_NEURONS = 8192
-LAYER_4_MLP_NEURONS = 8192
 
 ''' MODEL HYPERPARAMETERS '''
 # The learning rate for the gradient optimizer
@@ -63,8 +58,7 @@ def print_configuration():
   print('TRAINING_EPOCHS: {:,d}'.format(int(TRAINING_EPOCHS))) 
   print('BATCH_SIZE: {:,d}'.format(BATCH_SIZE))
   print('CONVOLUTION_SIZE: {:,d}'.format(CONVOLUTION_SIZE))
-  print('FEATURE_MAPS: Layer 1 = {:,d}, Layer 2 = {:,d}, Layer 3 = {:,d}, Layer 4 = {:,d}'.format(LAYER_1_FEATURE_MAPS, LAYER_2_FEATURE_MAPS, LAYER_3_FEATURE_MAPS, LAYER_4_FEATURE_MAPS))
+  print('FEATURE_MAPS: Layer 1 = {:,d}, Layer 2 = {:,d}, Layer 3 = {:,d}, Layer 4 = {:,d}, Layer 5 = {:,d}'.format(LAYER_1_FEATURE_MAPS, LAYER_2_FEATURE_MAPS, LAYER_3_FEATURE_MAPS, LAYER_4_FEATURE_MAPS, LAYER_5_FEATURE_MAPS))
   print('FC_NEURONS: Layer 1 = {:,d}, Layer 2 = {:,d}'.format(LAYER_1_FC_NEURONS, LAYER_2_FC_NEURONS))
-  print('MLP_NEURONS: Layer 1 = {:,d}, Layer 2 = {:,d}, Layer 3 = {:,d}, Layer 4 = {:,d}'.format(LAYER_1_MLP_NEURONS, LAYER_2_MLP_NEURONS, LAYER_3_MLP_NEURONS, LAYER_4_MLP_NEURONS))
   print('LEARNING_RATE: {:f}'.format(LEARNING_RATE))
   print('TRAINING_KEEP_PROB: {:f}'.format(TRAINING_KEEP_PROB))
