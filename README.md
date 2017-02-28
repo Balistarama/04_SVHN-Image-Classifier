@@ -43,10 +43,10 @@ that can be found here: https://www.udacity.com/course/deep-learning--ud730
 
 ###Hardware
 - Intel Core i7-6700 3.4GHz CPU
-- Gigabyte GA-Z170X-Gaming 7 ATX LGA1151 Motherboard
-- Corsair Vengeance LPX 32GB (4 x 8GB) DDR4-2666 Memory
-- Samsung 960 PRO 512GB M.2-2280 Solid State Drive
-- Gigabyte GeForce GTX 1070 8GB G1 Gaming Video Card
+- Gigabyte GA-Z170X-Gaming 7 Motherboard
+- Corsair Vengeance LPX 32GB DDR4 RAM
+- Samsung 960 PRO 512GB M.2 SSD
+- Gigabyte GeForce GTX 1070 8GB G1 GPU
 
 ##TODO LIST:
 - Build and configure data_processor.py to load the Matlab files, extract the 
@@ -63,8 +63,6 @@ code can use <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/b
 - Try out a three convolutions per "layer" model (didn't help) <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Introduce a decaying learning rate, decreased it whenever the validation error stops decreasing (didn't help) <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
 - Increase the models accuracy as much as possible <img src="https://github.com/Balistarama/04_SVHN-Image-Classifier/blob/master/images/tick.png?raw=true">
-- Once model accuracy is high enough setup [TPOT](https://github.com/rhiever/tpot) and confirm that it's running at peak efficiency
-- Deploy the final solution to the Google Machine Learning Cloud
 - Write up report
 
 ##INSTRUCTIONS:
