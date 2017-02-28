@@ -14,22 +14,22 @@ that can be found here: https://www.udacity.com/course/deep-learning--ud730
 
 ##MODEL ARCHITECTURE:
 - INPUT [32x32x3]
-- ---- LAYER 1 ----
+- ------ LAYER 1 ------
 - CONV1_1 [32x32x32]
 - CONV1_2 [32x32x32]
 - CONV1_3 [32x32x32]
 - POOL [16x16x32]
-- ---- LAYER 2 ----
+- ------ LAYER 2 ------
 - CONV2_1 [16x16x64]
 - CONV2_2 [16x16x64]
 - CONV2_3 [16x16x64]
 - POOL [8x8x64]
-- ---- LAYER 3 ----
+- ------ LAYER 3 ------
 - CONV2_1 [8x8x128]
 - CONV2_2 [8x8x128]
 - CONV2_3 [8x8x128]
 - POOL [4x4x128]
-- ---- LAYER 4 ----
+- ------ LAYER 4 ------
 - CONV2_1 [4x4x256]
 - CONV2_2 [4x4x256]
 - CONV2_3 [4x4x256]
