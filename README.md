@@ -4,13 +4,17 @@
 
 #04_SVHN Image Classifier
 Using the Street View House Numbers (SVHN) Dataset (Format 2), this project implements a 
-Deep Convolutional Neural Network to perform image to number classiffication.
+Deep Convolutional Neural Network to perform image to number classification.
 
 This project is also the final task in the Udacity Deep Learning course by Google 
 that can be found here: https://www.udacity.com/course/deep-learning--ud730
 
-##CURRENT BEST ACCURACY ACHIEVED:
+Whilst I was unable to achieve human level precision (98%) or above, it still succeeded
+in producing a quickly trainable CNN that completes the intended task with a decent accuracy.
+
+##BEST ACCURACY ACHIEVED:
 - 89.69% after 75 Epochs (Runtime: 177 Minutes)
+- 86.04% after 5 Epochs (Runtime: 11 Minutes)
 
 ##MODEL ARCHITECTURE:
 - INPUT [32x32x3]
@@ -43,7 +47,7 @@ that can be found here: https://www.udacity.com/course/deep-learning--ud730
 ###Software
 - Ubunutu 16.04
 - TensorFlow
-- Associated Libraries
+- Associated Libraries And Tools (Numpy, CUDA, cuDNN etc)
 
 ###Hardware
 - Intel Core i7-6700 3.4GHz CPU
@@ -74,7 +78,7 @@ balistarama@Computer:~/04_SVHN Image Classifier/data$ python3 data_processor.py
 ```
 
 ###Configuration Script (src/config.py)
-This file is only used to configure the neural network that's stored in src/main.py. Open the file up in any text editor type in the batch size, number of feature maps on each layer and many more paramaters (including hyperaramters too) and then run the main.py file.
+This file is only used to configure the neural network that's stored in src/main.py. Open the file up in any text editor type in the batch size, number of feature maps on each layer and many more parameters (including hyperparameters too) and then run the main.py file.
 
 ###Main Network Script (src/main.py)
 This file is where the network is built, defined and trained. Simply setup your configuration setting in the config.py file and run main.py!
@@ -94,7 +98,7 @@ Training Accuracy: 87% - Iteration: 5,988,000/6,043,880 (99%) - Time Remaining: 
 ```
 
 ##TENSORBOARD:
-If you would like to enable TensorBoard logging (note this drastically slows down training!) you can uncomment the code in main.py and then in a seperate terminal window and from the main directory run:
+If you would like to enable TensorBoard logging (note this drastically slows down training!) you can uncomment the code in main.py and then in a separate terminal window and from the main directory run:
 ```
 tensorboard --logdir=./logs
 ```
